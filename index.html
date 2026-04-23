@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Jenvor Studio - Luxury Jewellery Visuals</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Creativity Engine: GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#131313",
+                        "on-tertiary-container": "#434546",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-tint": "#e9c349",
+                        "surface-dim": "#131313",
+                        "secondary-fixed": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "outline": "#99907c",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "surface": "#131313",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "surface-container-highest": "#353535",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#20201f",
+                        "primary-fixed": "#ffe088",
+                        "error-container": "#93000a",
+                        "secondary-container": "#4a4949",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-primary-container": "#554300",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-surface-variant": "#d0c5af",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "surface-variant": "#353535",
+                        "tertiary-container": "#b2b3b3",
+                        "error": "#ffb4ab",
+                        "tertiary": "#cecece",
+                        "on-secondary": "#313030",
+                        "primary-container": "#d4af37",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#735c00",
+                        "secondary": "#c9c6c5",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline-variant": "#4d4635",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-tertiary": "#2f3131",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-surface": "#e5e2e1",
+                        "on-primary": "#3c2f00",
+                        "primary": "#f2ca50",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-primary-fixed": "#241a00",
+                        "on-secondary-container": "#bab8b7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "section-gap": "160px",
+                        "margin-edge": "64px",
+                        "unit": "8px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ['"Noto Serif"', "serif"],
+                        "label-caps": ['"Inter"', "sans-serif"],
+                        "headline-lg": ['"Noto Serif"', "serif"],
+                        "headline-md": ['"Noto Serif"', "serif"],
+                        "body-lg": ['"Inter"', "sans-serif"],
+                        "body-md": ['"Inter"', "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            cursor: none; /* Custom cursor */
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Glassmorphism & UI Utilities */
+        .glass-panel {
+            background: rgba(22, 22, 22, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #e9c349, #d4af37, #ffe088);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 50%, #99907c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cinematic-shadow {
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
+        }
+        
+        .inner-glow {
+            box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.1);
+        }
+
+        .hover-lift {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.9);
+        }
+
+        .img-hover-scale {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .group:hover .img-hover-scale {
+            transform: scale(1.05);
+        }
+
+        .luxury-gradient {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0) 0%, #0A0A0A 100%);
+        }
+
+        /* --- Unleashed Creativity Animations --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 6px; height: 6px; background-color: #D4AF37; }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.4);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .interactive:hover ~ .cursor-outline {
+            width: 70px; height: 70px; background-color: rgba(212, 175, 55, 0.08); border-color: #D4AF37;
+        }
+        #sparkle-canvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0; pointer-events: none; opacity: 0.6; mix-blend-screen;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+
+    <!-- Ambient Sparkle Particles & Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <canvas id="sparkle-canvas"></canvas>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="flex justify-between items-center px-8 md:px-16 py-6 w-full max-w-container-max mx-auto">
+            <!-- Brand -->
+            <a href="#home" class="text-2xl font-serif font-bold tracking-tighter text-[#D4AF37]">
+                JENVOR STUDIO
+            </a>
+            
+            <!-- Navigation Links -->
+            <div class="hidden md:flex gap-8 items-center font-serif tracking-[0.2em] uppercase text-xs font-light">
+                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#about">About</a>
+                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#services">Services</a>
+                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#portfolio">Portfolio</a>
+                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#investment">Investment</a>
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex items-center gap-6">
+                <a href="#investment" class="hidden md:block bg-[#D4AF37] text-[#131313] px-6 py-3 font-label-caps text-label-caps hover:bg-[#ffe088] transition-colors duration-300 rounded-DEFAULT">
+                    Enquire
+                </a>
+                <button class="text-white/60 hover:text-[#D4AF37] transition-all duration-500 cursor-pointer active:scale-95">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-[104px]">
+        
+        <!-- Hero Section (From jenvor_studio_home) -->
+        <section id="home" class="relative min-h-[100vh] flex items-center justify-center overflow-hidden py-section-gap px-margin-edge">
+            <!-- Cinematic Background - Unleashed Opacity & Parallax -->
+            <div class="absolute inset-0 z-0 pointer-events-none parallax-bg">
+                <img alt="Abstract 3D floating gold jewelry pieces over dark velvet background" class="w-full h-full object-cover opacity-85" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAy8w3y1N43157TMuOqAJvyGyXrDG13LI8ouBRCJo8wmoASpeKv8br7ZmYZu5MsZ7GygLCiOpn8DjikrPLf4hr1AWzdVL_tL_NFaBqamU4ro3BENzo7soZ9y7AybtD_1M9HhFxoUQ8xLbH46dIJrF8NlMbk9UXyjHZT-z6RE3Zg3yL90kYQtxs6_C0BhZyzWYgoK2IrpKzB3VGZ_S-8nWJvrssduFgTmQy-TlDUNuj62N8fISh82iIOr8oWXDPZiTF2dDKQfmGdnnG"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/10 via-transparent to-background/80"></div>
+            </div>
+            
+            <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center gap-8 hero-content">
+                <span class="font-label-caps text-label-caps text-primary-container tracking-[0.3em] uppercase border border-primary-container/30 px-6 py-2 rounded-full backdrop-blur-md bg-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                    The New Standard
+                </span>
+                <h1 class="font-display-xl text-display-xl text-on-background max-w-3xl leading-tight">
+                    Luxury jewellery visuals <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-primary to-primary-fixed italic font-light">without luxury production costs.</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">
+                    Cinematic 3D rendering and motion design tailored for high-end jewelers. We craft digital assets that rival physical diamonds.
+                </p>
+                <div class="mt-8 flex gap-6">
+                    <a href="#portfolio" class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-10 py-4 rounded-sm shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all duration-500 uppercase tracking-widest relative overflow-hidden group">
+                        <span class="relative z-10">View Portfolio</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (From about_jenvor_studio) -->
+        <section id="about" class="py-section-gap relative bg-surface-container-lowest border-t border-white/5">
+            <div class="max-w-container-max mx-auto px-margin-edge">
+                
+                <div class="text-center mb-24">
+                    <span class="font-label-caps text-label-caps text-primary-container block mb-8 uppercase tracking-[0.3em]">The Vision</span>
+                    <h2 class="font-display-xl text-display-xl text-on-background leading-tight mb-8">
+                        Transforming how <span class="text-primary-container italic">jewellery brands</span> create marketing content.
+                    </h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                        A boutique studio dedicated exclusively to crafting premium, cinematic campaign reels that capture the true essence and brilliance of high-end jewelry.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center mt-20">
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative aspect-[3/4] w-full overflow-hidden glass-panel group">
+                            <img alt="Portrait of Jenil Chawda" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out" src="https://media.licdn.com/dms/image/v2/D4D03AQF02u8Nv2U_vg/profile-displayphoto-scale_400_400/B4DZ1XovPpHkAk-/0/1775291799051?e=1778716800&v=beta&t=vQ_9rJKKkUPQ3PID8OLxL14Emr94JEDHHRQE1Amssjo"/>
+                            <div class="absolute inset-0 border-t border-l border-white/10 pointer-events-none"></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 lg:col-start-7 pt-12 lg:pt-0">
+                        <span class="font-label-caps text-label-caps text-primary-container block mb-6 uppercase">The Founder</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-background mb-8">Jenil Chawda</h2>
+                        <div class="space-y-6 font-body-md text-body-md text-on-surface-variant">
+                            <p>
+                                Before founding Jenvor Studio, Jenil recognized a distinct gap in the luxury market: traditional production houses treated diamonds and precious metals like any other product. They lacked the specialized lighting techniques and deep understanding required to capture internal refraction and microscopic craftsmanship.
+                            </p>
+                            <p>
+                                Jenvor was born from a singular obsession: to create a dedicated space where jewelry isn't just photographed, but directed. A place where every facet is illuminated with intent.
+                            </p>
+                            <p>
+                                Today, the studio operates as a private atelier, partnering intimately with select brands to elevate their digital presence through narrative-driven motion content.
+                            </p>
+                        </div>
+                        <div class="mt-12">
+                            <img alt="Elegant minimalist signature" class="h-16 opacity-70 mix-blend-screen filter sepia hue-rotate-[10deg] saturate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX_PDdC5nj7mQgWDqmCBLOuRKYEsbXrL5LoP1fh6fz0RIq7jcXmofGsRLBF4sPz046agyXxwrRBNZMLXsSDO9veRS6LrbB7kVmAYUnTP8suaG98bNfe-IWXdlYtFnBv2DNn8Wze0hdKM1JprM8hAcH_QYtJa2IVx-zU7GljOXAiGvf_5CrRaQSfv8_m89ueArhbyOLUQEWTBYoLdCRL-scQwzxL2YS2vyaM6TW5oW-1Fe3y0MCXjzP2LlFQ0CEGN1foqSlcWzuFbK1"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (From services_jenvor_studio) -->
+        <section id="services" class="w-full max-w-container-max mx-auto px-8 md:px-16 py-section-gap">
+            <div class="mb-20 text-center md:text-left">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Core Disciplines</h2>
+                <div class="h-[1px] w-24 bg-primary-container mx-auto md:mx-0"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Pillar 1: Cinematic Reels (Large/Featured) -->
+                <div class="md:col-span-8 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-[16/9] md:aspect-auto md:h-[600px] flex items-end">
+                    <img alt="Cinematic macro shot of a diamond ring catching light" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcgNwsLZ2UmUoRwbzERbJUWb1WfbBIQUPUqzK10aD3G6aWG2xY-k6Rb9wUepoVWCYueGinhoonu1_3zuVHzCcaiDOU0389xne6tzMwqvUrxifuOdxEdiFUorsZeM8Ko7EPj4ITW95ZxjB7IWMtkT2SsoW8EOOaIcXtjrNmYXZqV0BC8eKiC-_J5B0uXzKHxaVgshuHmzd_pZWbtuMVqg2h_K0UpjqhI11rTz8gZdPD0JAD2BHkU33vb3zsIdb0f1Gx0Kgh09DDrCYC"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
+                    <div class="relative z-10 p-10 w-full md:w-2/3 glass-panel m-6 rounded-lg">
+                        <div class="mb-4 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">01</div>
+                        <h3 class="font-headline-md text-headline-md text-primary-container mb-3">Cinematic Reels</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Hypnotic, short-form video content designed for Instagram and TikTok. We use high-speed macro videography and 3D rendering to create scroll-stopping moments.</p>
+                    </div>
+                </div>
+                
+                <!-- Pillar 2: Ad Creatives (Tall) -->
+                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-[3/4] md:h-[600px] flex items-end">
+                    <img alt="High-contrast editorial jewelry photography" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjamshrAmnTRUTssjLV0LLHQXCkU7odX1OWcgzclbes30vmFe6roxYNa1KR260AY-0hL9Vmc1HIfJFRG3ohbR40TAovpSi8ylXpOein4Elus1YvhsRiIr3i4EOhlg0Etx5utKZHRNF5ktCAC-kIG9wTR4JbcOkq9bIqMxQqgQiPWwD6qV48D_z7SH5672VN_WXxg3MsT17kALXlEAh7HHwV9wloOnyjnrKBUkPIP3TSWA5zClawZwIJqpZUDLy0OtO6Nhj-hUkEFZ7"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"></div>
+                    <div class="relative z-10 p-8 w-full">
+                        <div class="mb-4 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">02</div>
+                        <h3 class="font-headline-md text-headline-md text-primary-container mb-3">Ad Creatives</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Performance-driven visual assets optimized for conversion. Clean, striking imagery that cuts through the noise of digital advertising.</p>
+                    </div>
+                </div>
+                
+                <!-- Pillar 3: Product Photography -->
+                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
+                    <img alt="Precision macro shot of a solitary engagement ring" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAssYVkQU_2PWuHfYX7BvQ2oLHLyWvijkVzjHQxAPyAj_QeCu5HbDfbWDWUg-_aM4LjQlmLxug9dEDPva0kFU3zkB5ViUAntTt4_EYvh68hfL7JP5sKaY8OV4JUAx1ORgOyVdDH708FiNxSqApM4RbAiQasQzpx8oVcXDobnx7TgbsLrHeVDjSTfSu3dqC7aJUPISZHt7ZcyPu3rp69PWthRcpysxW2y7pFLTohU1aW98DzhUpu_VWu5jEVh1OJ-VApx6F4q3C3koo4"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+                    <div class="relative z-10 p-8">
+                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">03</div>
+                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">Product Photography</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant">Flawless, true-to-life e-commerce imagery. Every facet highlighted, every metal tone accurate.</p>
+                    </div>
+                </div>
+                
+                <!-- Pillar 4: AI Visuals -->
+                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
+                    <div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest to-surface-container-lowest"></div>
+                    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/20 via-surface/10 to-surface"></div>
+                    <div class="relative z-10 p-8">
+                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">04</div>
+                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">AI Visuals</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant">Next-generation conceptual modeling. Impossible environments and surreal backdrops for campaign highlights.</p>
+                    </div>
+                </div>
+                
+                <!-- Pillar 5: Content Strategy -->
+                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
+                    <img alt="Overhead view of editorial sketches" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-40 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb33GPWHASo--gRnVNnhfx3XS_9F0GoVpSEH9En0Vw5LMtKgGhfyUkydBhrl04CdX-sqHK3AziOY1-hiZkVV1fma4ICfiglJUvOgO0tF3wcqmsZmIJF1SKwS1iuRrXA1PM97NiOc7DT8OgRms5X_lkWkcY5HHx4iAQ12TMfIRexj-K_kdqNz2iQVpTzTTaKVMJ5OvXEDb0ax45J_0PxGd7yq3gOoxflDhafg1aH69DZ9KR3KEqDYH3eiPAwjmmnIRJq0_4I6VCicz"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+                    <div class="relative z-10 p-8">
+                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">05</div>
+                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">Content Strategy</h3>
+                        <p class="font-body-md text-sm text-on-surface-variant">Architecting the visual narrative. We plan the rollout, pacing, and platform-specific execution of your assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section (From portfolio_jenvor_studio) -->
+        <section id="portfolio" class="bg-surface-container-lowest py-section-gap border-y border-white/5">
+            <div class="max-w-container-max mx-auto px-8 md:px-16">
+                <div class="flex justify-between items-end mb-16 border-b border-surface-container-highest pb-8">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">The Collection</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Recent cinematic campaigns and high-fidelity renders.</p>
+                    </div>
+                    <div class="hidden md:flex gap-4">
+                        <button class="px-4 py-2 border border-primary-container rounded-full font-label-caps text-label-caps text-primary-container">ALL</button>
+                        <button class="px-4 py-2 border border-surface-container-highest rounded-full font-label-caps text-label-caps text-on-surface-variant hover:border-primary-container hover:text-primary-container transition-colors">MOTION</button>
+                        <button class="px-4 py-2 border border-surface-container-highest rounded-full font-label-caps text-label-caps text-on-surface-variant hover:border-primary-container hover:text-primary-container transition-colors">STILLS</button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[400px]">
+                    <!-- Feature Large -->
+                    <div class="md:col-span-8 md:row-span-2 relative group overflow-hidden bg-surface-container rounded-lg inner-glow cinematic-shadow hover-lift cursor-pointer">
+                        <img alt="Project Aurora" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw7-DBxtCw3NarK2NkYpBmTteyYcm66IeqXGA6K2vivKR-RXUng7aA60RqmbzvUQK6_gajXjS7xDvTgM8IzVwGiXK2daDPI18ACALtm4-0wXHXYMJte14v4C7-QkidVCOlAIimDtZeCzn3siQStrwgW5yua8qtmvaCbSUj1FKx1ZB28NB3H57ecu1SgOZD0GCUPWHd_Kb4qf_0hXMOAKk_huhGuA5-D3fF9-B42GbCvDevLF5-xx6JUR8gYfXwacVaOoeP8vq5Klv9"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 p-10 w-full glass-panel translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <div class="flex justify-between items-end">
+                                <div>
+                                    <span class="font-label-caps text-label-caps text-primary mb-3 block">MOTION CAMPAIGN</span>
+                                    <h3 class="font-headline-md text-headline-md text-on-surface">Project Aurora</h3>
+                                </div>
+                                <span class="material-symbols-outlined text-on-surface opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-3xl font-light">arrow_outward</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Small 1 -->
+                    <div class="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer">
+                        <img alt="Obsidian Essence" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5MEKBe7EMgroklVvRVOANxkko7YGpivQ7N1A9deiYvv0Ew-s0mpUt9t8Pa91cptjxvApTsp5SZEuMAbtxr2Tfr4LJRNmsWjtJifL6zV0yy8RS2jPfanh-KSOMzH-syH_Me3SCg1b_iF8JkZ4pmPwkWN5yt6WMTj_a6xN4clw58NlPhsaLosRQhOLENE5TTBIAyadX4X-KXLUg63XztiaIkQpfLIcEKeYQzZBnMS6-XUL6EVMFC5sHztKbEXbBDgpfGz_Hy_4e7Ma1"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full">
+                            <span class="font-label-caps text-label-caps text-primary mb-2 block text-[10px]">EDITORIAL</span>
+                            <h3 class="font-body-lg text-body-lg text-on-surface">Obsidian Essence</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Small 2 -->
+                    <div class="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer">
+                        <img alt="Rose Alloy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdgVtXvR5UnqESQkaPROrAVZOIH4mqKL3y_aEisECM2uVvoSzrpUCIrmBJLgncOhvehcytYgMn59HQIdcmUS0IZSvRgRspN9abZPvWguxvQjm1BPd50ImI7WAl3iz1DFjsz_itIgrMku7fRdGHTOktfg43GJ8C5iG6wUdvOhbfJTrjlLJnVq7b_Y25nbc8nq1LYlNPs0Vk_no6iulGPd8F2tSBfmuiLe4x2bINhM1kD_QlnszdF92nPQVUP12rHeT8XlebPa2tt4WP"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full">
+                            <span class="font-label-caps text-label-caps text-primary mb-2 block text-[10px]">PRODUCT VIZ</span>
+                            <h3 class="font-body-lg text-body-lg text-on-surface">Rose Alloy</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Horizontal Pan -->
+                    <div class="md:col-span-12 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer flex">
+                        <div class="w-1/2 p-12 flex flex-col justify-center glass-panel z-10 border-r border-white/5">
+                            <span class="font-label-caps text-label-caps text-primary mb-4 block">BESPOKE CONCEPT</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">The Chronos Mechanism</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Exploring the intricate micro-mechanics of haute horlogerie through hyper-realistic macro animation.</p>
+                        </div>
+                        <div class="w-1/2 relative overflow-hidden">
+                            <img alt="Chronos Mechanism" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC669p8DZm6yxUsadfuQ3D9kdNK8oP5IVZOiCoE5jvphDQxW7evjDpqmpU1HQWif2KIcr6mvYV0fmwxrwuNqZxGTnQt6gJ2NQ-Kzx0cc_uZuJsvydsnROzNRmCYiNWeFunISiGClql7a96UtpDFvRxTTNFemAxKxcukdRa8CgZ5b1IfFXgbWkfUwczyL7o0g6xqcP8h1mI-35z_I4iswj6PTMPQ16u2jIC2ArBRtTycI1t-sErZVTmlSfrTmvD9cULQRfumkSuHNNjs"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section (From services_jenvor_studio) -->
+        <section id="investment" class="w-full bg-surface py-section-gap relative">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary-container via-transparent to-transparent pointer-events-none"></div>
+            <div class="max-w-container-max mx-auto px-8 md:px-16 relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Investment</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Structured packages designed to scale with your brand's ambition. Transparent pricing, uncompromising quality.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Starter Tier -->
+                    <div class="glass-panel p-10 rounded-lg flex flex-col relative overflow-hidden group hover:bg-[#1A1A1A] transition-colors duration-500 border border-white/5">
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Starter</h3>
+                        <div class="text-3xl font-light text-primary-container mb-8">$2,500 <span class="text-sm text-on-surface-variant">/mo</span></div>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Essential social presence for emerging jewelry brands.</p>
+                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 10 Retouched Images</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 2 Cinematic Reels</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Basic Content Calendar</li>
+                        </ul>
+                        <button class="w-full py-4 border border-outline text-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-surface-container-high transition-colors">
+                            Select Starter
+                        </button>
+                    </div>
+                    
+                    <!-- Growth Tier (Highlighted) -->
+                    <div class="bg-[#161616] p-10 rounded-lg flex flex-col relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-primary-container/30 transform md:-translate-y-4">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-outline"></div>
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 blur-2xl rounded-full"></div>
+                        <div class="mb-4 inline-block px-3 py-1 bg-primary-container text-on-primary rounded-full font-label-caps text-[10px] uppercase tracking-widest self-start">Most Popular</div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Growth</h3>
+                        <div class="text-3xl font-light text-primary-container mb-8">$5,000 <span class="text-sm text-on-surface-variant">/mo</span></div>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Comprehensive visual strategy for established artisans.</p>
+                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 25 Retouched Images</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 5 Cinematic Reels</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 3 Ad Creatives (A/B Tested)</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Full Content Strategy</li>
+                        </ul>
+                        <button class="w-full py-4 bg-primary-container text-on-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary transition-colors">
+                            Select Growth
+                        </button>
+                    </div>
+                    
+                    <!-- Atelier Tier -->
+                    <div class="glass-panel p-10 rounded-lg flex flex-col relative overflow-hidden group hover:bg-[#1A1A1A] transition-colors duration-500 border border-white/5">
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Atelier</h3>
+                        <div class="text-3xl font-light text-primary-container mb-8">Custom <span class="text-sm text-on-surface-variant">Pricing</span></div>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Bespoke campaign production and global rollout strategies.</p>
+                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Unlimited E-commerce Imaging</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 3D Asset Creation</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Conceptual AI Visuals</li>
+                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Dedicated Creative Director</li>
+                        </ul>
+                        <button class="w-full py-4 border border-outline text-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-surface-container-high transition-colors">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer (From jenvor_studio_home / unified) -->
+    <footer class="bg-[#0A0A0A] dark:bg-[#0A0A0A] w-full border-t border-white/5 pt-24 pb-12 flat no shadows relative z-10">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16 text-center">
+            <div class="text-xl font-serif text-[#D4AF37] opacity-80">
+                JENVOR STUDIO
+            </div>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
+                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Privacy Policy</a>
+                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Terms of Service</a>
+                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Shipping & Returns</a>
+                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Instagram</a>
+                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Pinterest</a>
+            </div>
+            <div class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 pt-8 border-t border-white/5 w-full max-w-md">
+                © 2026 JENVOR STUDIO. CRAFTED FOR THE EXTRAORDINARY.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Creativity & Animation Engine -->
+    <script>
+        // Interactive Elements Tagging
+        document.querySelectorAll('a, button').forEach(el => el.classList.add('interactive'));
+
+        // 1. Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 400, fill: "forwards" });
+        });
+
+        // 2. Ambient Sparkle Canvas (3D dust/diamonds)
+        const canvas = document.getElementById('sparkle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            const particleCount = Math.floor((width * height) / 12000); 
+            
+            for(let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 2 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.2,
+                    speedY: (Math.random() - 0.5) * 0.4 - 0.1,
+                    opacity: Math.random(),
+                    fadeDir: Math.random() > 0.5 ? 0.005 : -0.005,
+                    color: Math.random() > 0.15 ? '#D4AF37' : '#FFFFFF' 
+                });
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.x += p.speedX; p.y += p.speedY;
+                p.opacity += p.fadeDir;
+                if(p.opacity >= 0.8 || p.opacity <= 0.05) p.fadeDir *= -1;
+                
+                if(p.x < 0) p.x = width; if(p.x > width) p.x = 0;
+                if(p.y < 0) p.y = height; if(p.y > height) p.y = 0;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.shadowBlur = p.size * 2;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animateCanvas();
+
+        // 3. GSAP Cinematic Sequence
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Sequence
+        const heroTl = gsap.timeline();
+        heroTl.from(".hero-content > *", {
+            y: 40, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out", delay: 0.2
+        });
+        
+        // Parallax Hero Image
+        gsap.to(".parallax-bg img", {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Smart Reveal for all major elements
+        const revealElements = gsap.utils.toArray('section h2, section p, .glass-panel, .group:not(.parallax-bg), .bg-surface-container, .bg-\\[\\#161616\\]');
+        revealElements.forEach(element => {
+            gsap.fromTo(element, 
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 1.2, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // 4. 3D Tilt Effect
+        const tiltElements = document.querySelectorAll('.glass-panel, .bg-surface-container, .bg-\\[\\#161616\\]');
+        tiltElements.forEach(card => {
+            card.style.transition = "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease, box-shadow 0.4s ease";
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                card.style.zIndex = "20";
+                
+                // Add a dynamic glow matching mouse position
+                if(!card.classList.contains('bg-[#161616]')) { // Don't override primary pricing card style
+                   card.style.borderColor = "rgba(212, 175, 55, 0.4)";
+                   card.style.boxShadow = `0 30px 60px -15px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.05)`;
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                card.style.zIndex = "1";
+                if(!card.classList.contains('bg-[#161616]')) {
+                   card.style.borderColor = "";
+                   card.style.boxShadow = "";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
