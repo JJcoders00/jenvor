@@ -1,664 +1,1013 @@
 <!DOCTYPE html>
-<html class="dark scroll-smooth" lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Jenvor Studio - Luxury Jewellery Visuals</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenvor Studio | Digital Atelier</title>
+    <link rel="canonical" href="https://jenvorstudio.com" />
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Creativity Engine: GSAP -->
+    <!-- Core JS Libraries -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "background": "#131313",
-                        "on-tertiary-container": "#434546",
-                        "surface-container-lowest": "#0e0e0e",
-                        "surface-tint": "#e9c349",
-                        "surface-dim": "#131313",
-                        "secondary-fixed": "#e5e2e1",
-                        "inverse-surface": "#e5e2e1",
-                        "outline": "#99907c",
-                        "surface-container-low": "#1c1b1b",
-                        "surface-bright": "#393939",
-                        "surface": "#131313",
-                        "on-secondary-fixed": "#1c1b1b",
-                        "surface-container-highest": "#353535",
-                        "on-background": "#e5e2e1",
-                        "surface-container": "#20201f",
-                        "primary-fixed": "#ffe088",
-                        "error-container": "#93000a",
-                        "secondary-container": "#4a4949",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "on-primary-container": "#554300",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-fixed-variant": "#574500",
-                        "on-surface-variant": "#d0c5af",
-                        "secondary-fixed-dim": "#c9c6c5",
-                        "surface-variant": "#353535",
-                        "tertiary-container": "#b2b3b3",
-                        "error": "#ffb4ab",
-                        "tertiary": "#cecece",
-                        "on-secondary": "#313030",
-                        "primary-container": "#d4af37",
-                        "surface-container-high": "#2a2a2a",
-                        "inverse-on-surface": "#313030",
-                        "inverse-primary": "#735c00",
-                        "secondary": "#c9c6c5",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "on-error": "#690005",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "outline-variant": "#4d4635",
-                        "primary-fixed-dim": "#e9c349",
-                        "on-tertiary": "#2f3131",
-                        "tertiary-fixed": "#e2e2e2",
-                        "on-surface": "#e5e2e1",
-                        "on-primary": "#3c2f00",
-                        "primary": "#f2ca50",
-                        "on-secondary-fixed-variant": "#474646",
-                        "on-primary-fixed": "#241a00",
-                        "on-secondary-container": "#bab8b7"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "gutter": "32px",
-                        "section-gap": "160px",
-                        "margin-edge": "64px",
-                        "unit": "8px",
-                        "container-max": "1440px"
-                    },
-                    "fontFamily": {
-                        "display-xl": ['"Noto Serif"', "serif"],
-                        "label-caps": ['"Inter"', "sans-serif"],
-                        "headline-lg": ['"Noto Serif"', "serif"],
-                        "headline-md": ['"Noto Serif"', "serif"],
-                        "body-lg": ['"Inter"', "sans-serif"],
-                        "body-md": ['"Inter"', "sans-serif"]
-                    },
-                    "fontSize": {
-                        "display-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400" }],
-                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "600" }],
-                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400" }],
-                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "400" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "300" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- PURE CUSTOM CSS (JJ Coders Style -> Jenvor Dark Gold Edition) -->
     <style>
+        /* Base Resets & Variables */
+        :root {
+            --bg: #050505;
+            --text: #ffffff;
+            --brand-gold: #D4AF37;
+            --brand-gold-light: #FCF6BA;
+            --brand-gold-dark: #AA771C;
+            --surface: #0a0a0a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        ::-webkit-scrollbar { display: none; }
+        
         body {
-            background-color: theme('colors.background');
-            color: theme('colors.on-background');
-            cursor: none; /* Custom cursor */
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
         
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        /* Glassmorphism & UI Utilities */
-        .glass-panel {
-            background: rgba(22, 22, 22, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.4);
-        }
+        /* EXPLICIT GOLD TEXT SELECTION */
+        ::-moz-selection { background-color: var(--brand-gold) !important; color: #000000 !important; }
+        ::selection { background-color: var(--brand-gold) !important; color: #000000 !important; }
         
-        .glass-nav {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .gold-gradient-text {
-            background: linear-gradient(to right, #e9c349, #d4af37, #ffe088);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #f2ca50 0%, #d4af37 50%, #99907c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cinematic-shadow {
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
-        }
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        button { background: none; border: none; cursor: pointer; font-family: inherit; }
+        .font-display { font-family: 'Cormorant Garamond', serif; }
         
-        .inner-glow {
-            box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.1);
-        }
-
-        .hover-lift {
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
+        /* Layout Utilities */
+        .container { width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 1.5rem; }
+        @media (min-width: 768px) { .container { padding: 0 3rem; } }
         
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.9);
+        /* 3D Canvas */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; background: #050505; }
+
+        /* --- Preloader --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #050505;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .loader-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .loader-diamond {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            transform: rotate(45deg);
+            animation: diamondPulse 2s infinite ease-in-out;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.05);
+        }
+        .loader-diamond::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border: 1px solid var(--brand-gold);
+            animation: diamondSpin 2s infinite linear;
+        }
+        .loader-diamond::after {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            animation: diamondCore 2s infinite ease-in-out;
+        }
+        .loader-text {
+            margin-top: 3rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--brand-gold);
+            animation: textPulse 2s infinite ease-in-out;
+        }
+        @keyframes diamondPulse {
+            0%, 100% { transform: rotate(45deg) scale(1); box-shadow: 0 0 20px rgba(212, 175, 55, 0.05); }
+            50% { transform: rotate(45deg) scale(1.1); box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+        }
+        @keyframes diamondSpin {
+            0% { transform: rotate(0deg); opacity: 1; }
+            50% { transform: rotate(180deg); opacity: 0.2; }
+            100% { transform: rotate(360deg); opacity: 1; }
+        }
+        @keyframes diamondCore {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
         }
 
-        .img-hover-scale {
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+        /* Header Navigation */
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; z-index: 50; mix-blend-mode: difference; pointer-events: none; }
+        @media (min-width: 768px) { .site-header { padding: 2.5rem; } }
+        .site-header > * { pointer-events: auto; }
+        .logo { cursor: pointer; display: flex; align-items: center; }
+        .logo img { height: 32px; width: auto; object-fit: contain; }
+        @media (min-width: 768px) { .logo img { height: 40px; } }
         
-        .group:hover .img-hover-scale {
-            transform: scale(1.05);
+        .nav-links { display: none; gap: 2.5rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-links a:hover { color: var(--brand-gold); }
+        
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        .contact-btn-wrap { display: none; }
+        @media (min-width: 768px) { .contact-btn-wrap { display: block; } .menu-btn { display: none; } }
+        .menu-btn { color: white; padding: 0.5rem; }
+
+        /* Mobile Menu */
+        .mobile-menu { position: fixed; inset: 0; background: rgba(5,5,5,0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); z-index: 40; display: none; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; }
+        .mobile-menu.is-open { display: flex; opacity: 1; }
+        .mobile-nav { display: flex; flex-direction: column; gap: 2rem; text-align: center; font-size: 2.5rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 0.05em; }
+        .mobile-nav a:hover { color: var(--brand-gold); }
+
+        /* Buttons */
+        .magnetic-btn-wrap { display: inline-block; position: relative; z-index: 10; }
+        .btn-outline { border: 1px solid rgba(212,175,55,0.4); border-radius: 50px; padding: 12px 32px; font-family: 'DM Sans', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; transition: all 0.3s; backdrop-filter: blur(10px); display: inline-flex; align-items: center; justify-content: center; color: var(--brand-gold); background: rgba(212,175,55,0.05); }
+        .btn-outline:hover { background: var(--brand-gold); color: #000; transform: scale(1.05); box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+        .btn-outline svg { margin-left: 0.5rem; width: 1rem; height: 1rem; }
+
+        /* Hero Section */
+        .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; z-index: 10; overflow: hidden; padding: 0 1rem; }
+        .hero-content { text-align: center; max-width: 80rem; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Refined Typography for Hero */
+        .hero-title {
+            font-size: 9vw; 
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-align: center;
+            width: 100%;
+            max-width: 90rem;
+            margin: 0 auto;
+            font-style: italic;
         }
 
-        .luxury-gradient {
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0) 0%, #0A0A0A 100%);
+        .hero-subtitle {
+            display: block;
+            font-size: 4vw; 
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.2em;
+            margin-top: 2rem;
+            font-weight: 400;
+            text-transform: uppercase; 
+            line-height: 1.4;
+            font-style: normal;
         }
 
-        /* --- Unleashed Creativity Animations --- */
-        .cursor-dot, .cursor-outline {
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9999; pointer-events: none;
+        @media (min-width: 768px) {
+            .hero-title { font-size: 7.5vw; line-height: 0.9; }
+            .hero-subtitle { font-size: 1rem; margin-top: 2rem; }
         }
-        .cursor-dot { width: 6px; height: 6px; background-color: #D4AF37; }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.4);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline, .interactive:hover ~ .cursor-outline {
-            width: 70px; height: 70px; background-color: rgba(212, 175, 55, 0.08); border-color: #D4AF37;
-        }
-        #sparkle-canvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0; pointer-events: none; opacity: 0.6; mix-blend-screen;
-        }
+
+        /* Floating SVGs */
+        .ambient-float { position: absolute; opacity: 0.3; pointer-events: none; animation: floatAmbient 8s ease-in-out infinite; }
+        .ambient-float-delayed { position: absolute; opacity: 0.2; pointer-events: none; animation: floatAmbient 10s ease-in-out infinite 2s; }
+        .hero-svg-1 { top: 15%; left: 10%; }
+        .hero-svg-2 { bottom: 15%; right: 10%; }
+        @keyframes floatAmbient { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-30px) rotate(10deg); } }
+
+        /* Story Scroll Sections */
+        .story-section { height: 150vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 10; }
+        .story-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 400; line-height: 1.2; text-align: center; max-width: 1200px; padding: 0 2rem; opacity: 0; transform: translateY(50px); text-shadow: 0 4px 30px rgba(0,0,0,0.9); }
+        .story-text span { color: transparent; background-image: linear-gradient(90deg, var(--brand-gold-light), var(--brand-gold-dark)); -webkit-background-clip: text; background-clip: text; font-style: italic; }
+
+        /* Divisions / Engage Section */
+        .engage-section { padding: 5rem 0; position: relative; z-index: 20; background: rgba(5,5,5,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); margin-top: 10vh; border-top: 1px solid rgba(212,175,55,0.1); }
+        @media (min-width: 768px) { .engage-section { padding: 8rem 0; margin-top: 20vh; } }
+        .section-header { font-size: 2.5rem; font-weight: 400; letter-spacing: -0.02em; text-align: center; margin-bottom: 3rem; }
+        @media (min-width: 640px) { .section-header { font-size: 3.5rem; } }
+        @media (min-width: 768px) { .section-header { font-size: 5rem; margin-bottom: 5rem; } }
+
+        /* Gradient Cards (Gold Theme) */
+        .gradient-card { display: flex; flex-direction: column; gap: 2rem; padding: 2rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); margin-bottom: 1.5rem; transform-style: preserve-3d; transform: perspective(1000px); }
+        @media (min-width: 640px) { .gradient-card { padding: 3rem; } }
+        @media (min-width: 768px) { .gradient-card { flex-direction: row; padding: 4rem; gap: 2.5rem; align-items: center; justify-content: space-between; margin-bottom: 2rem; } }
+        
+        .grad-1 { background: linear-gradient(135deg, #0a0800 0%, #141000 50%, #332800 100%); }
+        .grad-2 { background: linear-gradient(135deg, #050400 0%, #1a1500 50%, #4d3a00 100%); border-color: rgba(212,175,55,0.4); box-shadow: 0 20px 50px rgba(212,175,55,0.1); }
+        .grad-3 { background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%); }
+        
+        .card-inner { transform: translateZ(40px); transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); width: 100%; }
+        @media (min-width: 768px) { .card-left { width: 55%; } .card-right { width: 35%; } }
+
+        .card-title { font-size: 2.5rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--brand-gold-light); }
+        @media (min-width: 640px) { .card-title { font-size: 3.5rem; } }
+        @media (min-width: 768px) { .card-title { font-size: 4rem; } }
+        .card-price { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--brand-gold); margin-bottom: 1.5rem; display: block; }
+        @media (min-width: 768px) { .card-price { margin-bottom: 2rem; } }
+        .card-desc { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.7); max-width: 32rem; margin-bottom: 1.5rem; }
+        @media (min-width: 768px) { .card-desc { font-size: 1.15rem; margin-bottom: 2.5rem; } }
+        
+        .card-list { display: flex; flex-direction: column; gap: 1rem; list-style: none; font-family: 'DM Sans', sans-serif; }
+        @media (min-width: 768px) { .card-list { gap: 1.25rem; } }
+        .card-list li { display: flex; align-items: center; gap: 1rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.9); }
+        @media (min-width: 640px) { .card-list li { font-size: 0.85rem; } }
+
+        /* Neon Bento Grid (Gold Edition) */
+        .revolution-section { padding: 5rem 0; position: relative; z-index: 20; background: #050505; border-top: 1px solid rgba(212,175,55,0.1); }
+        @media (min-width: 768px) { .revolution-section { padding: 8rem 0; } }
+        .bento-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 768px) { .bento-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+        .neon-bento { background: #0a0a0a; border: 1px solid rgba(212,175,55,0.1); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.4s; transform-style: preserve-3d; transform: perspective(1000px); }
+        @media (min-width: 768px) { .neon-bento { padding: 4rem 3rem; } }
+        .neon-bento:hover { background: #111; border-color: rgba(212,175,55,0.4); box-shadow: 0 20px 50px rgba(212,175,55,0.15); }
+        .bento-icon { width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; transform: translateZ(30px); position: relative; }
+        .bento-content { transform: translateZ(15px); }
+        .bento-title { font-size: 2rem; font-weight: 500; margin-bottom: 1rem; color: var(--brand-gold-light); }
+        .bento-desc { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+        /* Fixed Bento SVGs */
+        .bento-svg { animation: floatBento 6s ease-in-out infinite; stroke: var(--brand-gold); }
+        .bento-svg-delayed { animation: floatBento 7s ease-in-out infinite 2s; stroke: var(--brand-gold); }
+        @keyframes floatBento { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-15px) rotate(5deg); } }
+
+        /* Beyond Memorization Section -> The Vision */
+        .beyond-section { padding: 6rem 0; position: relative; z-index: 20; background: linear-gradient(180deg, #050505 0%, rgba(20,15,0,0.8) 50%, transparent 100%); overflow: hidden; border-top: 1px solid rgba(212,175,55,0.1); }
+        @media (min-width: 768px) { .beyond-section { padding: 12rem 0; } }
+        .beyond-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: rgba(212,175,55,0.15); border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+        @media (min-width: 640px) { .beyond-glow { width: 600px; height: 600px; filter: blur(120px); } }
+        @media (min-width: 768px) { .beyond-glow { width: 800px; height: 800px; } }
+        .beyond-wrapper { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        
+        .global-badge { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.5rem 1.5rem; border-radius: 50px; border: 1px solid rgba(212,175,55,0.3); background: rgba(212,175,55,0.05); color: var(--brand-gold); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 2.5rem; backdrop-filter: blur(12px); font-family: 'DM Sans', sans-serif; }
+        @media (min-width: 640px) { .global-badge { font-size: 0.75rem; margin-bottom: 3rem; } }
+        .badge-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--brand-gold-light); box-shadow: 0 0 15px var(--brand-gold); animation: pulse 2s infinite; }
+        @keyframes pulse { 50% { opacity: 0.4; transform: scale(0.8); } }
+        
+        .beyond-title { font-size: 3rem; font-weight: 400; text-transform: none; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: #fff; line-height: 1; }
+        @media (min-width: 640px) { .beyond-title { font-size: 4rem; } }
+        @media (min-width: 768px) { .beyond-title { font-size: 6rem; margin-bottom: 2rem; } }
+        @media (min-width: 1024px) { .beyond-title { font-size: 8rem; } }
+        .beyond-title span { background-image: linear-gradient(90deg, var(--brand-gold-light) 0%, var(--brand-gold-dark) 100%); -webkit-background-clip: text; background-clip: text; font-style: italic; }
+        
+        .beyond-desc { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 300; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 48rem; margin-bottom: 3rem; }
+        @media (min-width: 640px) { .beyond-desc { font-size: 1.25rem; } }
+        @media (min-width: 768px) { .beyond-desc { font-size: 1.4rem; margin-bottom: 4rem; } }
+
+        /* Dark Gold Liquid Glass Footer */
+        .footer-reveal { background: linear-gradient(180deg, rgba(20, 15, 0, 0.4) 0%, rgba(212, 175, 55, 0.1) 30%, rgba(5, 5, 5, 0.95) 75%, #000000 100%); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border-top: 1px solid rgba(212, 175, 55, 0.2); color: #fff; position: relative; z-index: 20; padding-top: 10vh; display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh; }
+        .footer-top { padding-top: 5rem; }
+        @media (min-width: 768px) { .footer-top { padding-top: 8rem; } }
+        .footer-title { font-size: 12vw; line-height: 0.9; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--brand-gold); }
+        @media (min-width: 768px) { .footer-title { font-size: 10vw; line-height: 0.8; margin-bottom: 2rem; } }
+        .footer-desc { font-family: 'DM Sans', sans-serif; font-size: 1.15rem; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 42rem; margin-bottom: 2.5rem; line-height: 1.6; }
+        @media (min-width: 640px) { .footer-desc { font-size: 1.4rem; } }
+        @media (min-width: 768px) { .footer-desc { font-size: 1.8rem; margin-bottom: 3.5rem; } }
+        
+        .footer-reveal .btn-outline { border-color: var(--brand-gold); color: var(--brand-gold); padding: 1.2rem 2.5rem; font-size: 0.9rem; }
+        @media (min-width: 768px) { .footer-reveal .btn-outline { padding: 1.5rem 3rem; font-size: 1rem; } }
+        .footer-reveal .btn-outline:hover { background: var(--brand-gold); color: #000; }
+
+        .footer-mid { margin-top: 4rem; padding-top: 2rem; padding-bottom: 2.5rem; display: flex; flex-direction: column; gap: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        @media (min-width: 768px) { .footer-mid { margin-top: 5rem; padding-top: 3rem; padding-bottom: 3rem; flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 3rem; } }
+        
+        .founder-info { display: flex; align-items: center; gap: 1.25rem; }
+        .founder-img { width: 4rem; height: 4rem; border-radius: 50%; object-fit: cover; border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 10px 20px -3px rgba(212,175,55,0.2); }
+        @media (min-width: 768px) { .founder-img { width: 5rem; height: 5rem; } }
+        .founder-name { font-size: 1.5rem; font-weight: 500; color: #fff; font-family: 'Cormorant Garamond', serif; }
+        @media (min-width: 768px) { .founder-name { font-size: 2rem; } }
+        .founder-role { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--brand-gold); margin-top: 0.25rem; }
+        @media (min-width: 768px) { .founder-role { font-size: 0.75rem; } }
+        
+        .footer-links-wrap { display: flex; flex-direction: column; gap: 2.5rem; width: 100%; font-family: 'DM Sans', sans-serif; }
+        @media (min-width: 640px) { .footer-links-wrap { flex-direction: row; flex-wrap: wrap; } }
+        @media (min-width: 768px) { .footer-links-wrap { flex-wrap: nowrap; gap: 6rem; width: auto; } }
+        .footer-links-col { display: flex; flex-direction: column; gap: 1rem; font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.7); }
+        .footer-links-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--brand-gold); margin-bottom: 0.5rem; }
+        .footer-link { display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.3s, transform 0.3s; }
+        .footer-link:hover { color: var(--brand-gold-light); transform: translateX(5px); }
+        .footer-link svg { width: 1.2rem; height: 1.2rem; flex-shrink: 0; }
+
+        .footer-bottom { padding-bottom: 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); }
+
+        /* Modal Contact Form */
+        .modal { margin: auto; padding: 0; background: transparent; border: none; width: 95%; max-width: 48rem; }
+        @media (min-width: 640px) { .modal { width: 100%; } }
+        .modal::backdrop { background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
+        .modal-content { background: #0a0a0a; color: white; padding: 2rem; border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; position: relative; box-shadow: 0 0 60px rgba(212,175,55,0.1); transform-style: preserve-3d; transform: perspective(1000px); }
+        @media (min-width: 768px) { .modal-content { padding: 4rem; } }
+        
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; padding: 0.5rem; color: rgba(255,255,255,0.5); transition: color 0.3s; }
+        .modal-close:hover { color: var(--brand-gold); }
+        
+        .modal-title { font-size: 2.5rem; font-weight: 500; margin-bottom: 1rem; padding-right: 2rem; color: var(--brand-gold); font-family: 'Cormorant Garamond', serif; }
+        @media (min-width: 768px) { .modal-title { font-size: 3.5rem; } }
+        
+        .modal-desc { font-family: 'DM Sans', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; line-height: 1.6; }
+        
+        .form-group { display: flex; flex-direction: column; gap: 1.5rem; font-family: 'DM Sans', sans-serif; }
+        
+        .form-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 1rem; font-size: 1rem; color: white; transition: border-color 0.3s; outline: none; font-family: inherit; }
+        .form-input:focus { border-color: var(--brand-gold); }
+        textarea.form-input { resize: none; }
+        
+        .submit-btn { width: 100%; padding: 1.25rem; margin-top: 1.5rem; background: rgba(212,175,55,0.1); border: 1px solid var(--brand-gold); color: var(--brand-gold); border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; transition: all 0.3s; display: flex; align-items: center; justify-content: center; font-family: inherit; }
+        .submit-btn:hover { background: var(--brand-gold); color: #000; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+        .submit-btn svg { margin-left: 0.5rem; width: 1rem; height: 1rem; }
+
+        dialog[open] { animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+        /* GSAP Animation Utilities */
+        .char-wrapper { display: inline-block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+        .gs-char { display: inline-block; transform: translateY(110%) rotateX(-90deg); transform-origin: bottom; opacity: 0; }
+        .word-wrapper { display: inline-block; overflow: hidden; }
+        .gs-word { display: inline-block; transform: translateY(110%); }
+
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<body>
 
-    <!-- Ambient Sparkle Particles & Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <canvas id="sparkle-canvas"></canvas>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="logo.png" alt="Jenvor Studio Logo" class="loader-logo" onerror="this.style.display='none'">
+        <div class="loader-diamond"></div>
+        <div class="loader-text">Jenvor Studio</div>
+    </div>
 
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
-        <div class="flex justify-between items-center px-8 md:px-16 py-6 w-full max-w-container-max mx-auto">
-            <!-- Brand -->
-            <a href="#home" class="text-2xl font-serif font-bold tracking-tighter text-[#D4AF37]">
-                JENVOR STUDIO
-            </a>
-            
-            <!-- Navigation Links -->
-            <div class="hidden md:flex gap-8 items-center font-serif tracking-[0.2em] uppercase text-xs font-light">
-                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#about">About</a>
-                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#services">Services</a>
-                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#portfolio">Portfolio</a>
-                <a class="text-white/60 hover:text-[#D4AF37] hover:tracking-[0.3em] transition-all duration-500 cursor-pointer active:scale-95" href="#investment">Investment</a>
-            </div>
-            
-            <!-- Actions -->
-            <div class="flex items-center gap-6">
-                <a href="#investment" class="hidden md:block bg-[#D4AF37] text-[#131313] px-6 py-3 font-label-caps text-label-caps hover:bg-[#ffe088] transition-colors duration-300 rounded-DEFAULT">
-                    Enquire
-                </a>
-                <button class="text-white/60 hover:text-[#D4AF37] transition-all duration-500 cursor-pointer active:scale-95">
-                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
-                </button>
-            </div>
+    <!-- 3D WEBGL SCENE (GOLD DIAMOND FIELD) -->
+    <div id="canvas-container"></div>
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <div class="logo gs-nav-item" onclick="window.scrollTo(0,0)">
+            <img src="logo.png" alt="Jenvor Studio Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span style="display:none; color:var(--brand-gold); font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1.5rem; letter-spacing:0.1em; text-transform:uppercase;">JENVOR STUDIO</span>
         </div>
-    </nav>
-
-    <main class="flex-grow pt-[104px]">
         
-        <!-- Hero Section (From jenvor_studio_home) -->
-        <section id="home" class="relative min-h-[100vh] flex items-center justify-center overflow-hidden py-section-gap px-margin-edge">
-            <!-- Cinematic Background - Unleashed Opacity & Parallax -->
-            <div class="absolute inset-0 z-0 pointer-events-none parallax-bg">
-                <img alt="Abstract 3D floating gold jewelry pieces over dark velvet background" class="w-full h-full object-cover opacity-85" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAy8w3y1N43157TMuOqAJvyGyXrDG13LI8ouBRCJo8wmoASpeKv8br7ZmYZu5MsZ7GygLCiOpn8DjikrPLf4hr1AWzdVL_tL_NFaBqamU4ro3BENzo7soZ9y7AybtD_1M9HhFxoUQ8xLbH46dIJrF8NlMbk9UXyjHZT-z6RE3Zg3yL90kYQtxs6_C0BhZyzWYgoK2IrpKzB3VGZ_S-8nWJvrssduFgTmQy-TlDUNuj62N8fISh82iIOr8oWXDPZiTF2dDKQfmGdnnG"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/10 via-transparent to-background/80"></div>
+        <nav class="nav-links">
+            <a href="#" class="gs-nav-item">Home</a>
+            <a href="#engage" class="gs-nav-item">Packages</a>
+            <a href="#contact" class="gs-nav-item">The Atelier</a>
+        </nav>
+
+        <div class="header-actions gs-nav-item">
+            <div class="magnetic-btn-wrap contact-btn-wrap">
+                <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element">Enquire</button>
             </div>
+            <button id="menu-btn" class="menu-btn magnetic-element">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="mobile-menu">
+        <nav class="mobile-nav">
+            <a href="#" class="mobile-link">Home</a>
+            <a href="#engage" class="mobile-link">Packages</a>
+            <a href="#contact" class="mobile-link">The Atelier</a>
+            <div style="margin-top: 3rem;">
+                <button onclick="document.getElementById('contact-modal').showModal(); document.getElementById('menu-btn').click();" class="btn-outline">Enquire</button>
+            </div>
+        </nav>
+    </div>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
             
-            <div class="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center gap-8 hero-content">
-                <span class="font-label-caps text-label-caps text-primary-container tracking-[0.3em] uppercase border border-primary-container/30 px-6 py-2 rounded-full backdrop-blur-md bg-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
-                    The New Standard
-                </span>
-                <h1 class="font-display-xl text-display-xl text-on-background max-w-3xl leading-tight">
-                    Luxury jewellery visuals <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-primary to-primary-fixed italic font-light">without luxury production costs.</span>
+            <!-- HERO / INTRO -->
+            <section class="hero-section">
+                <!-- Ambient Floating Gold Elements -->
+                <svg class="ambient-float hero-svg-1" width="60" height="60" viewBox="0 0 100 100" fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="1"><path d="M50 0 L100 50 L50 100 L0 50 Z"/></svg>
+                <svg class="ambient-float-delayed hero-svg-2" width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1"><circle cx="50" cy="50" r="45"/><circle cx="50" cy="50" r="25"/></svg>
+
+                <section class="h-[100vh] flex items-center justify-center relative z-10 px-6">
+                <h1 class="font-display uppercase hero-title">
+                    LUXURY JEWELLERY<br class="hidden md:block"> VISUALS
+                    <span class="hero-subtitle font-sans">
+                        Without luxury production costs.
+                    </span>
                 </h1>
-                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">
-                    Cinematic 3D rendering and motion design tailored for high-end jewelers. We craft digital assets that rival physical diamonds.
+            </section>
+            </section>
+
+            <!-- SCROLL STORY 1 -->
+            <section class="story-section" id="story-1">
+                <p class="story-text">
+                    Customers judge jewellery quality first through visuals online. We ensure your brand looks <span>premium, luxurious, and high-value.</span>
                 </p>
-                <div class="mt-8 flex gap-6">
-                    <a href="#portfolio" class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-10 py-4 rounded-sm shadow-[0_0_40px_rgba(212,175,55,0.2)] hover:shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all duration-500 uppercase tracking-widest relative overflow-hidden group">
-                        <span class="relative z-10">View Portfolio</span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    </a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- About Section (From about_jenvor_studio) -->
-        <section id="about" class="py-section-gap relative bg-surface-container-lowest border-t border-white/5">
-            <div class="max-w-container-max mx-auto px-margin-edge">
-                
-                <div class="text-center mb-24">
-                    <span class="font-label-caps text-label-caps text-primary-container block mb-8 uppercase tracking-[0.3em]">The Vision</span>
-                    <h2 class="font-display-xl text-display-xl text-on-background leading-tight mb-8">
-                        Transforming how <span class="text-primary-container italic">jewellery brands</span> create marketing content.
-                    </h2>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-                        A boutique studio dedicated exclusively to crafting premium, cinematic campaign reels that capture the true essence and brilliance of high-end jewelry.
-                    </p>
-                </div>
+            <!-- SCROLL STORY 2 -->
+            <section class="story-section" id="story-2">
+                <p class="story-text">
+                    Forget costly studios and slow productions. We use smart creative systems and AI workflows to deliver <span>luxury-style output efficiently.</span>
+                </p>
+            </section>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center mt-20">
-                    <div class="lg:col-span-5 relative">
-                        <div class="relative aspect-[3/4] w-full overflow-hidden glass-panel group">
-                            <img alt="Portrait of Jenil Chawda" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out" src="https://media.licdn.com/dms/image/v2/D4D03AQF02u8Nv2U_vg/profile-displayphoto-scale_400_400/B4DZ1XovPpHkAk-/0/1775291799051?e=1778716800&v=beta&t=vQ_9rJKKkUPQ3PID8OLxL14Emr94JEDHHRQE1Amssjo"/>
-                            <div class="absolute inset-0 border-t border-l border-white/10 pointer-events-none"></div>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-6 lg:col-start-7 pt-12 lg:pt-0">
-                        <span class="font-label-caps text-label-caps text-primary-container block mb-6 uppercase">The Founder</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-background mb-8">Jenil Chawda</h2>
-                        <div class="space-y-6 font-body-md text-body-md text-on-surface-variant">
-                            <p>
-                                Before founding Jenvor Studio, Jenil recognized a distinct gap in the luxury market: traditional production houses treated diamonds and precious metals like any other product. They lacked the specialized lighting techniques and deep understanding required to capture internal refraction and microscopic craftsmanship.
-                            </p>
-                            <p>
-                                Jenvor was born from a singular obsession: to create a dedicated space where jewelry isn't just photographed, but directed. A place where every facet is illuminated with intent.
-                            </p>
-                            <p>
-                                Today, the studio operates as a private atelier, partnering intimately with select brands to elevate their digital presence through narrative-driven motion content.
-                            </p>
-                        </div>
-                        <div class="mt-12">
-                            <img alt="Elegant minimalist signature" class="h-16 opacity-70 mix-blend-screen filter sepia hue-rotate-[10deg] saturate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX_PDdC5nj7mQgWDqmCBLOuRKYEsbXrL5LoP1fh6fz0RIq7jcXmofGsRLBF4sPz046agyXxwrRBNZMLXsSDO9veRS6LrbB7kVmAYUnTP8suaG98bNfe-IWXdlYtFnBv2DNn8Wze0hdKM1JprM8hAcH_QYtJa2IVx-zU7GljOXAiGvf_5CrRaQSfv8_m89ueArhbyOLUQEWTBYoLdCRL-scQwzxL2YS2vyaM6TW5oW-1Fe3y0MCXjzP2LlFQ0CEGN1foqSlcWzuFbK1"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <!-- SCROLL STORY 3 -->
+            <section class="story-section" id="story-3">
+                <p class="story-text">
+                    A boutique studio dedicated exclusively to the jewellery niche, crafted for <span>the modern era.</span>
+                </p>
+            </section>
 
-        <!-- Services Section (From services_jenvor_studio) -->
-        <section id="services" class="w-full max-w-container-max mx-auto px-8 md:px-16 py-section-gap">
-            <div class="mb-20 text-center md:text-left">
-                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Core Disciplines</h2>
-                <div class="h-[1px] w-24 bg-primary-container mx-auto md:mx-0"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <!-- Pillar 1: Cinematic Reels (Large/Featured) -->
-                <div class="md:col-span-8 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-[16/9] md:aspect-auto md:h-[600px] flex items-end">
-                    <img alt="Cinematic macro shot of a diamond ring catching light" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcgNwsLZ2UmUoRwbzERbJUWb1WfbBIQUPUqzK10aD3G6aWG2xY-k6Rb9wUepoVWCYueGinhoonu1_3zuVHzCcaiDOU0389xne6tzMwqvUrxifuOdxEdiFUorsZeM8Ko7EPj4ITW95ZxjB7IWMtkT2SsoW8EOOaIcXtjrNmYXZqV0BC8eKiC-_J5B0uXzKHxaVgshuHmzd_pZWbtuMVqg2h_K0UpjqhI11rTz8gZdPD0JAD2BHkU33vb3zsIdb0f1Gx0Kgh09DDrCYC"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent"></div>
-                    <div class="relative z-10 p-10 w-full md:w-2/3 glass-panel m-6 rounded-lg">
-                        <div class="mb-4 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">01</div>
-                        <h3 class="font-headline-md text-headline-md text-primary-container mb-3">Cinematic Reels</h3>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Hypnotic, short-form video content designed for Instagram and TikTok. We use high-speed macro videography and 3D rendering to create scroll-stopping moments.</p>
+            <!-- INVESTMENT PACKAGES (GRADIENT CARDS) -->
+            <section id="engage" class="engage-section">
+                <div class="container">
+                    <div style="overflow:hidden;">
+                        <h2 class="section-header font-display split-chars">Business Packages</h2>
                     </div>
-                </div>
-                
-                <!-- Pillar 2: Ad Creatives (Tall) -->
-                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-[3/4] md:h-[600px] flex items-end">
-                    <img alt="High-contrast editorial jewelry photography" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjamshrAmnTRUTssjLV0LLHQXCkU7odX1OWcgzclbes30vmFe6roxYNa1KR260AY-0hL9Vmc1HIfJFRG3ohbR40TAovpSi8ylXpOein4Elus1YvhsRiIr3i4EOhlg0Etx5utKZHRNF5ktCAC-kIG9wTR4JbcOkq9bIqMxQqgQiPWwD6qV48D_z7SH5672VN_WXxg3MsT17kALXlEAh7HHwV9wloOnyjnrKBUkPIP3TSWA5zClawZwIJqpZUDLy0OtO6Nhj-hUkEFZ7"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"></div>
-                    <div class="relative z-10 p-8 w-full">
-                        <div class="mb-4 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">02</div>
-                        <h3 class="font-headline-md text-headline-md text-primary-container mb-3">Ad Creatives</h3>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Performance-driven visual assets optimized for conversion. Clean, striking imagery that cuts through the noise of digital advertising.</p>
-                    </div>
-                </div>
-                
-                <!-- Pillar 3: Product Photography -->
-                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
-                    <img alt="Precision macro shot of a solitary engagement ring" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAssYVkQU_2PWuHfYX7BvQ2oLHLyWvijkVzjHQxAPyAj_QeCu5HbDfbWDWUg-_aM4LjQlmLxug9dEDPva0kFU3zkB5ViUAntTt4_EYvh68hfL7JP5sKaY8OV4JUAx1ORgOyVdDH708FiNxSqApM4RbAiQasQzpx8oVcXDobnx7TgbsLrHeVDjSTfSu3dqC7aJUPISZHt7ZcyPu3rp69PWthRcpysxW2y7pFLTohU1aW98DzhUpu_VWu5jEVh1OJ-VApx6F4q3C3koo4"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
-                    <div class="relative z-10 p-8">
-                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">03</div>
-                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">Product Photography</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant">Flawless, true-to-life e-commerce imagery. Every facet highlighted, every metal tone accurate.</p>
-                    </div>
-                </div>
-                
-                <!-- Pillar 4: AI Visuals -->
-                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
-                    <div class="absolute inset-0 bg-gradient-to-br from-surface-container-highest to-surface-container-lowest"></div>
-                    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-container/20 via-surface/10 to-surface"></div>
-                    <div class="relative z-10 p-8">
-                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">04</div>
-                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">AI Visuals</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant">Next-generation conceptual modeling. Impossible environments and surreal backdrops for campaign highlights.</p>
-                    </div>
-                </div>
-                
-                <!-- Pillar 5: Content Strategy -->
-                <div class="md:col-span-4 group relative overflow-hidden rounded-lg bg-surface-container border border-white/5 aspect-square flex items-end">
-                    <img alt="Overhead view of editorial sketches" class="absolute inset-0 w-full h-full object-cover img-hover-scale opacity-40 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb33GPWHASo--gRnVNnhfx3XS_9F0GoVpSEH9En0Vw5LMtKgGhfyUkydBhrl04CdX-sqHK3AziOY1-hiZkVV1fma4ICfiglJUvOgO0tF3wcqmsZmIJF1SKwS1iuRrXA1PM97NiOc7DT8OgRms5X_lkWkcY5HHx4iAQ12TMfIRexj-K_kdqNz2iQVpTzTTaKVMJ5OvXEDb0ax45J_0PxGd7yq3gOoxflDhafg1aH69DZ9KR3KEqDYH3eiPAwjmmnIRJq0_4I6VCicz"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
-                    <div class="relative z-10 p-8">
-                        <div class="mb-3 inline-block px-3 py-1 border border-white/20 rounded-full font-label-caps text-label-caps text-on-surface-variant">05</div>
-                        <h3 class="font-headline-md text-[24px] leading-tight text-primary-container mb-2">Content Strategy</h3>
-                        <p class="font-body-md text-sm text-on-surface-variant">Architecting the visual narrative. We plan the rollout, pacing, and platform-specific execution of your assets.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section (From portfolio_jenvor_studio) -->
-        <section id="portfolio" class="bg-surface-container-lowest py-section-gap border-y border-white/5">
-            <div class="max-w-container-max mx-auto px-8 md:px-16">
-                <div class="flex justify-between items-end mb-16 border-b border-surface-container-highest pb-8">
+                    
                     <div>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">The Collection</h2>
-                        <p class="font-body-md text-body-md text-on-surface-variant">Recent cinematic campaigns and high-fidelity renders.</p>
-                    </div>
-                    <div class="hidden md:flex gap-4">
-                        <button class="px-4 py-2 border border-primary-container rounded-full font-label-caps text-label-caps text-primary-container">ALL</button>
-                        <button class="px-4 py-2 border border-surface-container-highest rounded-full font-label-caps text-label-caps text-on-surface-variant hover:border-primary-container hover:text-primary-container transition-colors">MOTION</button>
-                        <button class="px-4 py-2 border border-surface-container-highest rounded-full font-label-caps text-label-caps text-on-surface-variant hover:border-primary-container hover:text-primary-container transition-colors">STILLS</button>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[400px]">
-                    <!-- Feature Large -->
-                    <div class="md:col-span-8 md:row-span-2 relative group overflow-hidden bg-surface-container rounded-lg inner-glow cinematic-shadow hover-lift cursor-pointer">
-                        <img alt="Project Aurora" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw7-DBxtCw3NarK2NkYpBmTteyYcm66IeqXGA6K2vivKR-RXUng7aA60RqmbzvUQK6_gajXjS7xDvTgM8IzVwGiXK2daDPI18ACALtm4-0wXHXYMJte14v4C7-QkidVCOlAIimDtZeCzn3siQStrwgW5yua8qtmvaCbSUj1FKx1ZB28NB3H57ecu1SgOZD0GCUPWHd_Kb4qf_0hXMOAKk_huhGuA5-D3fF9-B42GbCvDevLF5-xx6JUR8gYfXwacVaOoeP8vq5Klv9"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-                        <div class="absolute bottom-0 left-0 p-10 w-full glass-panel translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <div class="flex justify-between items-end">
-                                <div>
-                                    <span class="font-label-caps text-label-caps text-primary mb-3 block">MOTION CAMPAIGN</span>
-                                    <h3 class="font-headline-md text-headline-md text-on-surface">Project Aurora</h3>
+                        <!-- STARTER CARD -->
+                        <div class="gradient-card grad-1 tilt-element gs-card">
+                            <div class="card-inner card-left">
+                                <h3 class="card-title font-display">Starter</h3>
+                                <span class="card-price">Starter Package</span>
+                                <p class="card-desc">
+                                    Essential social presence for emerging jewelry brands. High-impact visuals to establish immediate premium perception without a huge budget.
+                                </p>
+                                <div class="magnetic-btn-wrap" style="margin-top: 1.5rem;">
+                                    <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element">
+                                        Select Starter <i data-lucide="arrow-right"></i>
+                                    </button>
                                 </div>
-                                <span class="material-symbols-outlined text-on-surface opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-3xl font-light">arrow_outward</span>
+                            </div>
+                            <div class="card-inner card-right">
+                                <ul class="card-list gs-list">
+                                    <li><span class="list-icon" style="color:var(--brand-gold-dark)"><i data-lucide="diamond" size="16"></i></span> 5 Product Creatives</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold-dark)"><i data-lucide="diamond" size="16"></i></span> 2 Cinematic Reels</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold-dark)"><i data-lucide="diamond" size="16"></i></span> Basic Ad Content</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- GROWTH CARD (Featured) -->
+                        <div class="gradient-card grad-2 tilt-element gs-card">
+                            <div class="card-inner card-left">
+                                <div style="display: inline-block; padding: 4px 12px; background: var(--brand-gold); color: black; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; border-radius: 20px; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif;">Most Popular</div>
+                                <h3 class="card-title font-display">Growth</h3>
+                                <span class="card-price">Growth Package</span>
+                                <p class="card-desc">
+                                    Comprehensive visual strategy for established artisans and D2C startups. Dominate algorithms and drive measurable luxury conversions.
+                                </p>
+                                <div class="magnetic-btn-wrap" style="margin-top: 1.5rem;">
+                                    <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element" style="background: var(--brand-gold); color: black; border-color: var(--brand-gold);">
+                                        Select Growth <i data-lucide="arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-inner card-right">
+                                <ul class="card-list gs-list">
+                                    <li><span class="list-icon" style="color:var(--brand-gold)"><i data-lucide="gem" size="16"></i></span> 10 Product Creatives</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold)"><i data-lucide="gem" size="16"></i></span> 5 Cinematic Reels</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold)"><i data-lucide="gem" size="16"></i></span> Ad Campaign Assets</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- ATELIER CARD -->
+                        <div class="gradient-card grad-3 tilt-element gs-card">
+                            <div class="card-inner card-left">
+                                <h3 class="card-title font-display">Premium</h3>
+                                <span class="card-price">Premium Package</span>
+                                <p class="card-desc">
+                                    A complete monthly content system for luxury houses requiring absolute narrative perfection and dedicated brand direction.
+                                </p>
+                                <div class="magnetic-btn-wrap" style="margin-top: 1.5rem;">
+                                    <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element">
+                                        Inquire Now <i data-lucide="arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-inner card-right">
+                                <ul class="card-list gs-list">
+                                    <li><span class="list-icon" style="color:var(--brand-gold-light)"><i data-lucide="crown" size="16"></i></span> Reels, Photos & Ads</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold-light)"><i data-lucide="crown" size="16"></i></span> Content Strategy</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold-light)"><i data-lucide="crown" size="16"></i></span> Included Revisions</li>
+                                    <li><span class="list-icon" style="color:var(--brand-gold-light)"><i data-lucide="crown" size="16"></i></span> Full Brand Direction</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Feature Small 1 -->
-                    <div class="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer">
-                        <img alt="Obsidian Essence" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5MEKBe7EMgroklVvRVOANxkko7YGpivQ7N1A9deiYvv0Ew-s0mpUt9t8Pa91cptjxvApTsp5SZEuMAbtxr2Tfr4LJRNmsWjtJifL6zV0yy8RS2jPfanh-KSOMzH-syH_Me3SCg1b_iF8JkZ4pmPwkWN5yt6WMTj_a6xN4clw58NlPhsaLosRQhOLENE5TTBIAyadX4X-KXLUg63XztiaIkQpfLIcEKeYQzZBnMS6-XUL6EVMFC5sHztKbEXbBDgpfGz_Hy_4e7Ma1"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
-                        <div class="absolute bottom-0 left-0 p-6 w-full">
-                            <span class="font-label-caps text-label-caps text-primary mb-2 block text-[10px]">EDITORIAL</span>
-                            <h3 class="font-body-lg text-body-lg text-on-surface">Obsidian Essence</h3>
-                        </div>
-                    </div>
-                    
-                    <!-- Feature Small 2 -->
-                    <div class="md:col-span-4 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer">
-                        <img alt="Rose Alloy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdgVtXvR5UnqESQkaPROrAVZOIH4mqKL3y_aEisECM2uVvoSzrpUCIrmBJLgncOhvehcytYgMn59HQIdcmUS0IZSvRgRspN9abZPvWguxvQjm1BPd50ImI7WAl3iz1DFjsz_itIgrMku7fRdGHTOktfg43GJ8C5iG6wUdvOhbfJTrjlLJnVq7b_Y25nbc8nq1LYlNPs0Vk_no6iulGPd8F2tSBfmuiLe4x2bINhM1kD_QlnszdF92nPQVUP12rHeT8XlebPa2tt4WP"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
-                        <div class="absolute bottom-0 left-0 p-6 w-full">
-                            <span class="font-label-caps text-label-caps text-primary mb-2 block text-[10px]">PRODUCT VIZ</span>
-                            <h3 class="font-body-lg text-body-lg text-on-surface">Rose Alloy</h3>
-                        </div>
-                    </div>
-                    
-                    <!-- Horizontal Pan -->
-                    <div class="md:col-span-12 md:row-span-1 relative group overflow-hidden bg-surface-container rounded-lg inner-glow hover-lift cursor-pointer flex">
-                        <div class="w-1/2 p-12 flex flex-col justify-center glass-panel z-10 border-r border-white/5">
-                            <span class="font-label-caps text-label-caps text-primary mb-4 block">BESPOKE CONCEPT</span>
-                            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">The Chronos Mechanism</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Exploring the intricate micro-mechanics of haute horlogerie through hyper-realistic macro animation.</p>
-                        </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img alt="Chronos Mechanism" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC669p8DZm6yxUsadfuQ3D9kdNK8oP5IVZOiCoE5jvphDQxW7evjDpqmpU1HQWif2KIcr6mvYV0fmwxrwuNqZxGTnQt6gJ2NQ-Kzx0cc_uZuJsvydsnROzNRmCYiNWeFunISiGClql7a96UtpDFvRxTTNFemAxKxcukdRa8CgZ5b1IfFXgbWkfUwczyL7o0g6xqcP8h1mI-35z_I4iswj6PTMPQ16u2jIC2ArBRtTycI1t-sErZVTmlSfrTmvD9cULQRfumkSuHNNjs"/>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Packages Section (From services_jenvor_studio) -->
-        <section id="investment" class="w-full bg-surface py-section-gap relative">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary-container via-transparent to-transparent pointer-events-none"></div>
-            <div class="max-w-container-max mx-auto px-8 md:px-16 relative z-10">
-                <div class="text-center mb-20">
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6">Investment</h2>
-                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Structured packages designed to scale with your brand's ambition. Transparent pricing, uncompromising quality.</p>
+            <!-- CORE DISCIPLINES (NEON BENTO GRID) -->
+            <section class="revolution-section">
+                <div class="container">
+                    <div style="overflow:hidden;">
+                        <h2 class="section-header font-display split-chars">Core<br>Disciplines</h2>
+                    </div>
+                    
+                    <div class="bento-grid">
+                        <div class="neon-bento tilt-element gs-bento">
+                            <div class="bento-icon">
+                                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="bento-svg">
+                                    <circle cx="50" cy="50" r="40" stroke-width="1.5"/>
+                                    <circle cx="50" cy="50" r="25" stroke-width="1.5"/>
+                                    <path d="M50 10 L50 90 M10 50 L90 50" stroke-width="1.5"/>
+                                    <circle cx="50" cy="50" r="4" fill="var(--brand-gold)"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <h4 class="bento-title font-display">Cinematic Reels</h4>
+                                <p class="bento-desc">Hypnotic, short-form 3D animations and cinematic reels capturing the true interplay of light and gem. Engineered for massive engagement on Instagram Reels, Facebook Ads, and YouTube Shorts.</p>
+                            </div>
+                        </div>
+
+                        <div class="neon-bento tilt-element gs-bento">
+                            <div class="bento-icon">
+                                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="bento-svg-delayed">
+                                    <path d="M50 15 L85 35 L85 65 L50 85 L15 65 L15 35 Z" stroke-width="1.5"/>
+                                    <path d="M50 15 L50 50 L85 65" stroke-width="1.5"/>
+                                    <path d="M15 35 L50 50" stroke-width="1.5"/>
+                                    <circle cx="50" cy="50" r="4" fill="var(--brand-gold)"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <h4 class="bento-title font-display">AI-Powered Production</h4>
+                                <p class="bento-desc">We bypass the need for expensive models and large production teams by utilizing cutting-edge AI workflows—delivering studio-quality visuals without the traditional shoot challenges.</p>
+                            </div>
+                        </div>
+
+                        <div class="neon-bento tilt-element gs-bento">
+                            <div class="bento-icon">
+                                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" class="bento-svg">
+                                    <rect x="25" y="25" width="50" height="50" stroke-width="1.5"/>
+                                    <path d="M20 20 L80 80 M80 20 L20 80" stroke-width="1.5"/>
+                                    <rect x="40" y="40" width="20" height="20" fill="var(--brand-gold)"/>
+                                </svg>
+                            </div>
+                            <div class="bento-content">
+                                <h4 class="bento-title font-display">Ad Creatives & Photo</h4>
+                                <p class="bento-desc">Performance-driven visual assets optimized for high conversion. We deliver high-contrast, sparkle-focused photography designed specifically to elevate trust and conversion rates.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
+
+            <!-- THE FOUNDER (BEYOND MEMORIZATION INITIATIVE STYLE) -->
+            <section class="beyond-section">
+                <div class="beyond-glow ambient-float"></div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Starter Tier -->
-                    <div class="glass-panel p-10 rounded-lg flex flex-col relative overflow-hidden group hover:bg-[#1A1A1A] transition-colors duration-500 border border-white/5">
-                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Starter</h3>
-                        <div class="text-3xl font-light text-primary-container mb-8">$2,500 <span class="text-sm text-on-surface-variant">/mo</span></div>
-                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Essential social presence for emerging jewelry brands.</p>
-                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 10 Retouched Images</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 2 Cinematic Reels</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Basic Content Calendar</li>
-                        </ul>
-                        <button class="w-full py-4 border border-outline text-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-surface-container-high transition-colors">
-                            Select Starter
-                        </button>
+                <div class="container beyond-wrapper gs-beyond-content">
+                    <div class="global-badge gs-beyond-item">
+                        <div class="badge-dot"></div> Boutique Atelier
                     </div>
                     
-                    <!-- Growth Tier (Highlighted) -->
-                    <div class="bg-[#161616] p-10 rounded-lg flex flex-col relative overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-primary-container/30 transform md:-translate-y-4">
-                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-outline"></div>
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-container/10 blur-2xl rounded-full"></div>
-                        <div class="mb-4 inline-block px-3 py-1 bg-primary-container text-on-primary rounded-full font-label-caps text-[10px] uppercase tracking-widest self-start">Most Popular</div>
-                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Growth</h3>
-                        <div class="text-3xl font-light text-primary-container mb-8">$5,000 <span class="text-sm text-on-surface-variant">/mo</span></div>
-                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Comprehensive visual strategy for established artisans.</p>
-                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 25 Retouched Images</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 5 Cinematic Reels</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 3 Ad Creatives (A/B Tested)</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Full Content Strategy</li>
-                        </ul>
-                        <button class="w-full py-4 bg-primary-container text-on-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary transition-colors">
-                            Select Growth
-                        </button>
+                    <div style="overflow:hidden;">
+                        <h2 class="beyond-title font-display split-chars">
+                            Jenil<br><span>Chawda</span>
+                        </h2>
                     </div>
                     
-                    <!-- Atelier Tier -->
-                    <div class="glass-panel p-10 rounded-lg flex flex-col relative overflow-hidden group hover:bg-[#1A1A1A] transition-colors duration-500 border border-white/5">
-                        <h3 class="font-headline-md text-headline-md text-on-surface mb-2">Atelier</h3>
-                        <div class="text-3xl font-light text-primary-container mb-8">Custom <span class="text-sm text-on-surface-variant">Pricing</span></div>
-                        <p class="font-body-md text-body-md text-on-surface-variant mb-8 pb-8 border-b border-white/10">Bespoke campaign production and global rollout strategies.</p>
-                        <ul class="flex-grow space-y-4 font-body-md text-body-md text-on-surface mb-10">
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Unlimited E-commerce Imaging</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> 3D Asset Creation</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Conceptual AI Visuals</li>
-                            <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary-container text-sm">check</span> Dedicated Creative Director</li>
-                        </ul>
-                        <button class="w-full py-4 border border-outline text-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-surface-container-high transition-colors">
-                            Inquire Now
+                    <p class="beyond-desc gs-beyond-item">
+                        Founded by Jenil Chawda, Jenvor Studio operates as a private digital atelier dedicated exclusively to the jewellery niche. We solve the real market problem of expensive, slow traditional content creation. Whether you are a local store, a D2C startup, or a global gold brand, our digital-first workflow guarantees fast turnaround and unparalleled boutique service.
+                    </p>
+                    
+                    <div class="magnetic-btn-wrap gs-beyond-item">
+                        <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element">
+                            Commission a Project <i data-lucide="arrow-up-right"></i>
                         </button>
                     </div>
                 </div>
-            </div>
-        </section>
-        
+            </section>
+
+            <!-- DARK GOLD LIQUID GLASS FOOTER -->
+            <footer class="footer-reveal" id="contact">
+                <div class="container footer-top">
+                    <div style="overflow:hidden;">
+                        <h2 class="footer-title font-display split-chars footer-title-anim">
+                            JENVOR STUDIO
+                        </h2>
+                    </div>
+                    <p class="footer-desc gs-footer-item">
+                        A premium digital atelier and creative partner for high-growth jewellery brands.
+                    </p>
+                    
+                    <div class="magnetic-btn-wrap gs-footer-item">
+                        <button onclick="document.getElementById('contact-modal').showModal()" class="btn-outline magnetic-element">Begin a Conversation</button>
+                    </div>
+                </div>
+
+                <!-- Contact & Founder Section -->
+                <div class="container footer-mid gs-footer-item">
+                    <!-- Founder Profile -->
+                    <div class="magnetic-btn-wrap">
+                        <div class="magnetic-element founder-info">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQF02u8Nv2U_vg/profile-displayphoto-crop_800_800/B4DZ1XovPpHkAM-/0/1775291798960?e=1778716800&v=beta&t=CsuaIguf9Dp4EGLSiyJ68R2BU2nklQ5_yUBUTaWMfIc" alt="Jenil Chawda" class="founder-img">
+                            <div>
+                                <h4 class="founder-name">Jenil Chawda</h4>
+                                <p class="founder-role">Founder & Creative Director</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connect & Links Grid -->
+                    <div class="footer-links-wrap">
+                        <!-- Quick Links -->
+                        <div class="footer-links-col">
+                            <span class="footer-links-title">Directory</span>
+                            <a href="#" class="footer-link">Home</a>
+                            <a href="#engage" class="footer-link">Packages</a>
+                            <a href="#contact" class="footer-link">Contact</a>
+                        </div>
+
+                        <!-- Direct Connect -->
+                        <div class="footer-links-col">
+                            <span class="footer-links-title">Social</span>
+                            <a href="#" class="footer-link">
+                                <i data-lucide="instagram"></i> Instagram
+                            </a>
+                            <a href="#" class="footer-link">
+                                <i data-lucide="linkedin"></i> LinkedIn
+                            </a>
+                            <a href="#" class="footer-link">
+                                <i data-lucide="mail"></i> Email Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright Bar -->
+                <div class="container footer-bottom gs-footer-item flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <span>&copy; <span id="year"></span> JENVOR STUDIO. CRAFTED FOR THE EXTRAORDINARY.</span>
+                    <span style="opacity: 0.5;">Developed by JJ Coders</span>
+                </div>
+            </footer>
+
+        </div>
     </main>
 
-    <!-- Footer (From jenvor_studio_home / unified) -->
-    <footer class="bg-[#0A0A0A] dark:bg-[#0A0A0A] w-full border-t border-white/5 pt-24 pb-12 flat no shadows relative z-10">
-        <div class="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16 text-center">
-            <div class="text-xl font-serif text-[#D4AF37] opacity-80">
-                JENVOR STUDIO
-            </div>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Privacy Policy</a>
-                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Terms of Service</a>
-                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Shipping & Returns</a>
-                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Instagram</a>
-                <a class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 hover:text-white/80 transition-colors hover:tracking-[0.3em] transition-all duration-700" href="#">Pinterest</a>
-            </div>
-            <div class="font-serif tracking-widest uppercase text-[9px] leading-relaxed text-white/30 pt-8 border-t border-white/5 w-full max-w-md">
-                © 2026 JENVOR STUDIO. CRAFTED FOR THE EXTRAORDINARY.
-            </div>
+    <!-- MODAL FORM -->
+    <dialog id="contact-modal" class="modal">
+        <div class="modal-content tilt-element">
+            <button onclick="document.getElementById('contact-modal').close()" class="modal-close">
+                <i data-lucide="x"></i>
+            </button>
+            <h3 class="modal-title font-display">The Atelier</h3>
+            <p class="modal-desc">We select our partners carefully to ensure uncompromising quality. Tell us about your brand.</p>
+            
+            <form id="wa-form" class="form-group">
+                <input type="text" id="wa-name" required placeholder="Brand / Your Name" class="form-input">
+                <input type="email" id="wa-phone" required placeholder="Email Address" class="form-input">
+                <textarea id="wa-details" required rows="3" placeholder="Project Vision & Requirements" class="form-input"></textarea>
+                <div class="magnetic-btn-wrap" style="width:100%">
+                    <button type="submit" class="submit-btn magnetic-element">
+                        Submit Inquiry <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </form>
         </div>
-    </footer>
+    </dialog>
 
-    <!-- Creativity & Animation Engine -->
     <script>
-        // Interactive Elements Tagging
-        document.querySelectorAll('a, button').forEach(el => el.classList.add('interactive'));
-
-        // 1. Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+            document.getElementById('year').textContent = new Date().getFullYear();
+            lucide.createIcons();
             
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 400, fill: "forwards" });
-        });
+            initLenis();
+            splitTextForAnimation(); 
+            initThreeJS();
+            initInteractiveElements();
 
-        // 2. Ambient Sparkle Canvas (3D dust/diamonds)
-        const canvas = document.getElementById('sparkle-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles;
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById("menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            let menuOpen = false;
 
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            const particleCount = Math.floor((width * height) / 12000); 
-            
-            for(let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    size: Math.random() * 2 + 0.5,
-                    speedX: (Math.random() - 0.5) * 0.2,
-                    speedY: (Math.random() - 0.5) * 0.4 - 0.1,
-                    opacity: Math.random(),
-                    fadeDir: Math.random() > 0.5 ? 0.005 : -0.005,
-                    color: Math.random() > 0.15 ? '#D4AF37' : '#FFFFFF' 
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener("click", () => {
+                    menuOpen = !menuOpen;
+                    if(menuOpen) {
+                        mobileMenu.classList.add("is-open");
+                        menuBtn.innerHTML = '<i data-lucide="x"></i>';
+                        lucide.createIcons();
+                    } else {
+                        mobileMenu.classList.remove("is-open");
+                        menuBtn.innerHTML = '<i data-lucide="menu"></i>';
+                        lucide.createIcons();
+                    }
+                });
+
+                document.querySelectorAll(".mobile-link").forEach(link => {
+                    link.addEventListener("click", () => {
+                        menuOpen = false;
+                        mobileMenu.classList.remove("is-open");
+                        menuBtn.innerHTML = '<i data-lucide="menu"></i>';
+                        lucide.createIcons();
+                    });
                 });
             }
-        }
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.x += p.speedX; p.y += p.speedY;
-                p.opacity += p.fadeDir;
-                if(p.opacity >= 0.8 || p.opacity <= 0.05) p.fadeDir *= -1;
-                
-                if(p.x < 0) p.x = width; if(p.x > width) p.x = 0;
-                if(p.y < 0) p.y = height; if(p.y > height) p.y = 0;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.opacity;
-                ctx.shadowBlur = p.size * 2;
-                ctx.shadowColor = p.color;
-                ctx.fill();
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        animateCanvas();
-
-        // 3. GSAP Cinematic Sequence
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero Sequence
-        const heroTl = gsap.timeline();
-        heroTl.from(".hero-content > *", {
-            y: 40, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power3.out", delay: 0.2
-        });
-        
-        // Parallax Hero Image
-        gsap.to(".parallax-bg img", {
-            yPercent: 15,
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#home",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
+            // Email Form Submit Logic Placeholder
+            const waForm = document.getElementById('wa-form');
+            if(waForm) {
+                waForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert("Thank you. The Jenvor Studio team will contact you shortly.");
+                    document.getElementById('contact-modal').close();
+                    waForm.reset();
+                });
             }
         });
 
-        // Smart Reveal for all major elements
-        const revealElements = gsap.utils.toArray('section h2, section p, .glass-panel, .group:not(.parallax-bg), .bg-surface-container, .bg-\\[\\#161616\\]');
-        revealElements.forEach(element => {
-            gsap.fromTo(element, 
-                { y: 50, opacity: 0 },
-                {
-                    y: 0, opacity: 1, duration: 1.2, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
+        // --- PRELOADER & INITIAL ANIMATION LOGIC ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const tl = gsap.timeline();
+                
+                // Hide Preloader
+                tl.to(".loader-logo", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" })
+                  .to("#preloader", { yPercent: -100, duration: 1.2, ease: "power4.inOut", delay: 0.5 })
+                  
+                  // Start Hero Animation Sequence
+                  .from(".gs-nav-item", { y: -20, opacity: 0, duration: 1, stagger: 0.1, ease: "power3.out" }, "-=0.5")
+                  .to(".hero-title .gs-char", { y: 0, rotateX: 0, opacity: 1, duration: 1.2, stagger: 0.03, ease: "power4.out" }, "-=0.8")
+                  .fromTo(".hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out"}, "-=0.5")
+                  .call(() => {
+                      initScrollAnimations();
+                  });
+            }, 1000); 
         });
 
-        // 4. 3D Tilt Effect
-        const tiltElements = document.querySelectorAll('.glass-panel, .bg-surface-container, .bg-\\[\\#161616\\]');
-        tiltElements.forEach(card => {
-            card.style.transition = "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease, box-shadow 0.4s ease";
-            
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                card.style.zIndex = "20";
-                
-                // Add a dynamic glow matching mouse position
-                if(!card.classList.contains('bg-[#161616]')) { // Don't override primary pricing card style
-                   card.style.borderColor = "rgba(212, 175, 55, 0.4)";
-                   card.style.boxShadow = `0 30px 60px -15px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.05)`;
-                }
+        // --- INTERACTIVE ELEMENTS (Magnets & Tilts) ---
+        function initInteractiveElements() {
+            if(window.innerWidth < 768) return; 
+
+            const magneticElements = document.querySelectorAll('.magnetic-element');
+            magneticElements.forEach((elem) => {
+                elem.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const h = rect.width / 2;
+                    const v = rect.height / 2;
+                    const x = e.clientX - rect.left - h;
+                    const y = e.clientY - rect.top - v;
+                    
+                    gsap.to(this, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: "power3.out" });
+                });
+                elem.addEventListener('mouseleave', function() {
+                    gsap.to(this, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
+                });
             });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-                card.style.zIndex = "1";
-                if(!card.classList.contains('bg-[#161616]')) {
-                   card.style.borderColor = "";
-                   card.style.boxShadow = "";
-                }
+
+            const tiltElements = document.querySelectorAll('.tilt-element');
+            tiltElements.forEach((elem) => {
+                elem.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -8;
+                    const rotateY = ((x - centerX) / centerX) * 8;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+                });
+                elem.addEventListener('mouseleave', function() {
+                    this.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
             });
-        });
+        }
+
+        // --- TEXT SPLITTING FOR GSAP ---
+        function splitTextForAnimation() {
+            document.querySelectorAll('.split-chars').forEach(el => {
+                const text = el.innerText;
+                el.innerHTML = text.split('').map(char => 
+                    char === ' ' || char === '\n' ? '&nbsp;' : `<div class="char-wrapper"><span class="gs-char">${char}</span></div>`
+                ).join('');
+            });
+            document.querySelectorAll('.split-words').forEach(el => {
+                const words = el.innerText.split(' ');
+                el.innerHTML = words.map(word => 
+                    `<div class="word-wrapper"><span class="gs-word">${word}</span></div>&nbsp;`
+                ).join('');
+            });
+        }
+
+        // --- DOM SCROLL ANIMATIONS (GSAP) ---
+        function initScrollAnimations() {
+            ScrollTrigger.refresh();
+
+            gsap.to(".hero-content", { scrollTrigger: { trigger: ".hero-section", start: "top top", end: "bottom top", scrub: true }, opacity: 0, scale: 0.95, y: -100 });
+
+            const storySections = document.querySelectorAll('.story-section');
+            storySections.forEach((sec, i) => {
+                const text = sec.querySelector('.story-text');
+                gsap.to(text, { scrollTrigger: { trigger: sec, start: "top 65%", end: "top 20%", scrub: 1 }, opacity: 1, y: 0 });
+                gsap.to(text, { scrollTrigger: { trigger: sec, start: "bottom 80%", end: "bottom 20%", scrub: 1 }, opacity: 0, y: -30, scale: 0.98 });
+            });
+
+            gsap.to(".engage-section .split-chars .gs-char", { scrollTrigger: { trigger: ".engage-section", start: "top 80%" }, y: 0, rotateX: 0, opacity: 1, duration: 1, stagger: 0.03, ease: "power3.out" });
+            
+            gsap.fromTo(".gs-card", 
+                { y: 80, opacity: 0, rotationX: 5 },
+                { scrollTrigger: { trigger: ".engage-section", start: "top 60%" }, y: 0, opacity: 1, rotationX: 0, duration: 1.2, stagger: 0.2, ease: "power3.out" }
+            );
+            
+            document.querySelectorAll(".gs-list").forEach(list => {
+                gsap.fromTo(list.children, 
+                    { x: -15, opacity: 0 },
+                    { scrollTrigger: { trigger: list, start: "top 85%" }, x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+                );
+            });
+
+            gsap.to(".revolution-section .split-chars .gs-char", { scrollTrigger: { trigger: ".revolution-section", start: "top 80%" }, y: 0, rotateX: 0, opacity: 1, duration: 1, stagger: 0.03, ease: "power3.out" });
+            
+            gsap.fromTo(".gs-bento", 
+                { y: 40, scale: 0.98, opacity: 0 },
+                { scrollTrigger: { trigger: ".revolution-section", start: "top 75%" }, y: 0, scale: 1, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out" }
+            );
+
+            gsap.to(".gs-beyond-content .split-chars .gs-char", { scrollTrigger: { trigger: ".beyond-section", start: "top 75%" }, y: 0, rotateX: 0, opacity: 1, duration: 1, stagger: 0.03, ease: "power4.out" });
+            
+            gsap.fromTo(".gs-beyond-item", 
+                { y: 30, opacity: 0 },
+                { scrollTrigger: { trigger: ".beyond-section", start: "top 60%" }, y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power2.out" }
+            );
+
+            gsap.to(".footer-title-anim .gs-char", { scrollTrigger: { trigger: ".footer-reveal", start: "top 50%" }, y: 0, rotateX: 0, opacity: 1, duration: 1.2, stagger: 0.05, ease: "power4.out" });
+            
+            gsap.fromTo(".gs-footer-item", 
+                { y: 30, opacity: 0 },
+                { scrollTrigger: { trigger: ".footer-reveal", start: "top 40%" }, y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power2.out" }
+            );
+
+            gsap.to("#canvas-container", { scrollTrigger: { trigger: ".footer-reveal", start: "top 100%", end: "bottom bottom", scrub: true }, opacity: 0.2 });
+        }
+
+        // --- THE MAGIC 3D FLIGHT ENGINE (GOLD DIAMOND EDITION) ---
+        function initThreeJS() {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x050505, 0.001);
+
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Warm Gold/Dark Nebula
+            function createRadialGradient() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 512; canvas.height = 512;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+                gradient.addColorStop(0, 'rgba(252, 246, 186, 0.8)'); // Light Gold
+                gradient.addColorStop(0.3, 'rgba(212, 175, 55, 0.4)'); // Solid Gold
+                gradient.addColorStop(0.6, 'rgba(170, 119, 28, 0.1)'); // Dark Gold
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 512, 512);
+                return new THREE.CanvasTexture(canvas);
+            }
+            
+            const nebulaMat = new THREE.SpriteMaterial({ map: createRadialGradient(), blending: THREE.AdditiveBlending, transparent: true, opacity: 0.6 });
+            const nebula = new THREE.Sprite(nebulaMat);
+            nebula.scale.set(1200, 1200, 1);
+            nebula.position.z = -1000;
+            scene.add(nebula);
+
+            // Gold Dust / Particles
+            const starGeo = new THREE.BufferGeometry();
+            const starCount = 2000;
+            const starPos = new Float32Array(starCount * 3);
+            for(let i=0; i<starCount*3; i++) {
+                starPos[i] = (Math.random() - 0.5) * 2000;
+                starPos[i+1] = (Math.random() - 0.5) * 1500;
+                starPos[i+2] = (Math.random() - 1.0) * 1500; 
+            }
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+            
+            const dotCanvas = document.createElement('canvas');
+            dotCanvas.width = 16; dotCanvas.height = 16;
+            const dCtx = dotCanvas.getContext('2d');
+            dCtx.beginPath(); dCtx.arc(8, 8, 8, 0, Math.PI*2); dCtx.fillStyle = '#D4AF37'; dCtx.fill();
+            const starTex = new THREE.CanvasTexture(dotCanvas);
+
+            const starMat = new THREE.PointsMaterial({ size: 3, map: starTex, transparent: true, blending: THREE.AdditiveBlending, opacity: 0.7 });
+            const stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+
+            const diamondGroup = new THREE.Group();
+            
+            const diaGeo = new THREE.OctahedronGeometry(25, 0);
+            const diaMat = new THREE.MeshStandardMaterial({ 
+                color: 0xD4AF37, 
+                metalness: 1, 
+                roughness: 0.1, 
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            const diamond = new THREE.Mesh(diaGeo, diaMat);
+            
+            const coreGeo = new THREE.OctahedronGeometry(12, 0);
+            const coreMat = new THREE.MeshStandardMaterial({ 
+                color: 0xFCF6BA, 
+                emissive: 0xD4AF37,
+                emissiveIntensity: 0.5,
+                metalness: 1, 
+                roughness: 0, 
+            });
+            const core = new THREE.Mesh(coreGeo, coreMat);
+            
+            diamondGroup.add(diamond);
+            diamondGroup.add(core);
+            scene.add(diamondGroup);
+
+            const ambientLight = new THREE.AmbientLight(0x404040, 2);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 3);
+            dirLight.position.set(10, 20, 10);
+            scene.add(dirLight);
+            const pointLight = new THREE.PointLight(0xD4AF37, 5, 100);
+            pointLight.position.set(0, 0, 0);
+            scene.add(pointLight);
+
+            let scrollProgress = 0;
+            window.addEventListener('scroll', () => {
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                scrollProgress = window.scrollY / maxScroll;
+            });
+
+            let targetZ = 0, currentZ = 0, targetX = 0, currentX = 0;
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const time = clock.getElapsedTime();
+
+                nebula.rotation.z = time * 0.02;
+                stars.position.z = (time * 40) % 500;
+                stars.rotation.y = time * 0.02;
+
+                targetZ = -(scrollProgress * 800); 
+                targetX = Math.sin(scrollProgress * Math.PI * 4) * 20;
+
+                currentZ += (targetZ - currentZ) * 0.05;
+                currentX += (targetX - currentX) * 0.05;
+
+                diamondGroup.rotation.y = time * 0.2;
+                diamondGroup.rotation.x = time * 0.1;
+                diamondGroup.rotation.z = time * 0.05;
+
+                diamondGroup.position.set(currentX * 1.5, Math.sin(time)*2, currentZ - 80); 
+
+                camera.position.z = currentZ;
+                camera.lookAt(currentX, 0, currentZ - 100); 
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        function initLenis() {
+            const lenis = new Lenis({ duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time)=>{ lenis.raf(time * 1000) });
+            gsap.ticker.lagSmoothing(0, 0);
+        }
     </script>
 </body>
 </html>
