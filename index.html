@@ -143,6 +143,31 @@ button{font-family:inherit;cursor:pointer}
 .stat .num{font-family:var(--font-display);font-size:clamp(32px,4vw,52px);font-weight:700;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .lbl{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-dim);margin-top:4px}
 
+/* hero strip & modal */
+.hero-strip {display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:60px;font-family:var(--font-mono);font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--ink);align-items:center;animation:fadeUp 1s 1.4s both;}
+.hero-strip .dot {color:var(--gold);}
+@media(max-width:780px) { .hero-strip {gap:12px; font-size:11px; line-height: 1.8;} }
+
+/* ============ MODAL FORM ============ */
+.modal-overlay {position:fixed;inset:0;background:rgba(6,7,11,0.85);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.modal-overlay.active {opacity:1;pointer-events:auto;}
+.modal-box {background:linear-gradient(160deg,rgba(12,13,20,1),rgba(6,7,11,1));border:1px solid rgba(212,175,55,0.25);border-radius:24px;padding:40px;width:90%;max-width:560px;position:relative;transform:translateY(40px);transition:transform 0.4s cubic-bezier(0.2,0.8,0.2,1);box-shadow:var(--shadow-gold); max-height:90vh; overflow-y:auto;}
+.modal-overlay.active .modal-box {transform:translateY(0);}
+.modal-close {position:absolute;top:24px;right:24px;background:transparent;border:none;color:var(--ink-dim);font-size:28px;line-height:1;cursor:pointer;transition:color 0.3s;}
+.modal-close:hover {color:var(--gold);}
+.modal-title {font-family:var(--font-display);font-size:32px;margin-bottom:8px;font-weight:700;}
+.modal-desc {font-size:14px;color:var(--ink-dim);margin-bottom:30px;line-height:1.6;}
+.form-group {margin-bottom:20px;}
+.form-group label {display:block;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-dim);margin-bottom:8px;}
+.form-input {width:100%;padding:14px 18px;background:rgba(255,255,255,0.03);border:1px solid rgba(212,175,55,0.15);border-radius:12px;color:var(--ink);font-family:var(--font-body);font-size:14px;transition:all 0.3s;}
+.form-input:focus {outline:none;border-color:var(--gold);background:rgba(212,175,55,0.05);}
+.form-input::placeholder {color:rgba(163,158,147,0.4);}
+select.form-input {appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 1rem center;background-size:1em;}
+select.form-input option {background:var(--bg-2);color:var(--ink);}
+textarea.form-input {resize:vertical;min-height:100px;}
+.form-submit {width:100%;padding:16px;border-radius:50px;background:var(--grad-gold);color:#0a0a0a;border:none;font-family:var(--font-mono);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;margin-top:10px;}
+.form-submit:hover {transform:translateY(-2px);box-shadow:var(--shadow-gold);}
+
 /* scroll cue */
 .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-dim);display:flex;flex-direction:column;align-items:center;gap:10px;animation:fadeUp 1s 1.8s both}
 .scroll-cue .line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollDown 2s ease-in-out infinite}
@@ -339,9 +364,9 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     <a href="#pricing">Pricing</a>
     <a href="#calculator">Estimate</a>
     <a href="#contact">Contact</a>
-    <a class="nav-cta mobile-cta wa-link" data-msg="Hi Jenvor Studio, I'd like to start a project with you.">Start Project →</a>
+    <button class="nav-cta mobile-cta open-modal">Start Project →</button>
   </div>
-  <a class="nav-cta desktop-cta wa-link" data-msg="Hi Jenvor Studio, I'd like to start a project with you.">Start Project →</a>
+  <button class="nav-cta desktop-cta open-modal">Start Project →</button>
   
   <button class="ham-btn" id="hamBtn" aria-label="Toggle Menu">
     <span></span><span></span><span></span>
@@ -357,23 +382,24 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     <div class="cube c4" style="--s:50px"><div class="face f-front"></div><div class="face f-back"></div><div class="face f-left"></div><div class="face f-right"></div><div class="face f-top"></div><div class="face f-bottom"></div></div>
   </div>
   <div class="hero-content">
-    <div class="eyebrow"><span class="dot"></span> AI Production House · Est. 2026</div>
+    <div class="eyebrow">✦ AI Production House · Est. 2026</div>
     <h1>
-      <span class="word">We</span>
-      <span class="word">Engineer</span><br>
-      <span class="word shimmer">Cinematic</span>
-      <span class="word">Brands.</span>
+      <span class="word">Your Competitors</span> <span class="word">Are Already</span><br>
+      <span class="word shimmer">Spending Less.</span> <span class="word">Looking Better.</span>
     </h1>
-    <p class="hero-sub">Jenvor Studio is a full-stack AI production house — crafting hyper-real ads, scroll-stopping videos and product imagery for jewellery, fashion, F&B, real estate, beauty &amp; D2C brands worldwide.</p>
+    <p class="hero-sub">JENVOR STUDIO helps brands reduce their marketing budget by 60–90% — while producing cinematic ads, reels &amp; product visuals that drive real views, engagement &amp; sales.</p>
     <div class="hero-ctas">
-      <button class="btn-primary wa-link" data-msg="Hi Jenvor Studio, I want a free creative consultation. Here's my brand:">Book Free Consultation <span>↗</span></button>
+      <button class="btn-primary open-modal">Start Your Project →</button>
       <a class="btn-ghost" href="#work">Watch Showreel ▷</a>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="num" data-count="25">0</div><div class="lbl">Brands Served</div></div>
-      <div class="stat"><div class="num" data-count="150">0</div><div class="lbl">Ads Delivered</div></div>
-      <div class="stat"><div class="num" data-count="500">0</div><div class="lbl">Thousand Views</div></div>
-      <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">Industries</div></div>
+    <div class="hero-strip">
+      <span>📉 60–90% Cost Reduction</span>
+      <span class="dot">·</span>
+      <span>🎬 Cinematic Quality</span>
+      <span class="dot">·</span>
+      <span>📈 Higher Engagement</span>
+      <span class="dot">·</span>
+      <span>⚡ Faster Turnaround</span>
     </div>
   </div>
   <div class="scroll-cue"><div>Scroll</div><div class="line"></div></div>
@@ -417,22 +443,22 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
       <div class="s-tags"><span>E-commerce</span><span>Catalogue</span><span>Hero shots</span></div>
     </div>
     <div class="service reveal"><span class="s-num">04</span>
-      <div class="s-icon">✨</div>
-      <h3>Brand Identity</h3>
-      <p>Logo systems, motion logos, brand guidelines &amp; visual languages designed to outlive trends.</p>
-      <div class="s-tags"><span>Logo</span><span>Guidelines</span><span>Motion ID</span></div>
+      <div class="s-icon">🎥</div>
+      <h3>Cinematic AI Video</h3>
+      <p>Next-gen AI video production using Veo 3 and Pika. Hyper-realistic scenes, characters, and brand stories — no crew, no location, no limits.</p>
+      <div class="s-tags"><span>VEO 3</span><span>Flow AI</span><span>Meta AI</span></div>
     </div>
     <div class="service reveal"><span class="s-num">05</span>
       <div class="s-icon">🎭</div>
-      <h3>AI Models &amp; Avatars</h3>
-      <p>Realistic AI models &amp; brand ambassadors — consistent across thousands of campaign frames.</p>
-      <div class="s-tags"><span>Lookbooks</span><span>Try-on</span><span>UGC</span></div>
+      <h3>AI Model &amp; Product Styling</h3>
+      <p>AI-generated models wearing your product in any setting — perfect for fashion, jewellery &amp; lifestyle brands who need lookbook visuals without a shoot.</p>
+      <div class="s-tags"><span>Jewellery</span><span>FASHION</span><span>UGC ad</span></div>
     </div>
     <div class="service reveal"><span class="s-num">06</span>
-      <div class="s-icon">🚀</div>
-      <h3>Performance Creatives</h3>
-      <p>Data-driven ad systems — 10+ variations per concept to find what truly converts on paid media.</p>
-      <div class="s-tags"><span>Meta</span><span>Google</span><span>A/B Tests</span></div>
+      <div class="s-icon">📱</div>
+      <h3>Social Media Content Production</h3>
+      <p>Done-for-you content systems for Instagram, Facebook, YouTube &amp; beyond — reels, carousels, static posts and stories, all crafted with AI-augmented workflows for consistent, high-converting output every month.</p>
+      <div class="s-tags"><span>INSTAGRAM</span><span>FACEBOOK</span><span>YOUTUBE</span><span>MONTHLY PACKS</span></div>
     </div>
   </div>
 </section>
@@ -802,6 +828,61 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
   <span>WhatsApp</span>
 </a>
 
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-title">Start a Project</div>
+    <div class="modal-desc">Fill out the details below. We'll connect with you on WhatsApp instantly with the next steps.</div>
+    <form id="projectForm">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" class="form-input" placeholder="Johan Jomet" required>
+      </div>
+      <div class="form-group">
+        <label>Brand Name</label>
+        <input type="text" name="brand" class="form-input" placeholder="Your brand or company" required>
+      </div>
+      <div class="form-group">
+        <label>What do you need?</label>
+        <select name="service" class="form-input" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="AI Video Ad">AI Video Ad</option>
+          <option value="Jewellery Film">Jewellery Film</option>
+          <option value="AI Product Photography">AI Product Photography</option>
+          <option value="Social Media Content">Social Media Content</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us about your project</label>
+        <textarea name="details" class="form-input" placeholder="Briefly describe your vision, product, or goals..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Budget Range</label>
+        <select name="budget" class="form-input" required>
+          <option value="" disabled selected>Select your budget</option>
+          <option value="Under ₹10K">Under ₹10K</option>
+          <option value="₹10K–₹25K">₹10K–₹25K</option>
+          <option value="₹25K–₹50K">₹25K–₹50K</option>
+          <option value="₹50K+">₹50K+</option>
+        </select>
+      </div>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <div class="form-group" style="flex:1; min-width:180px;">
+          <label>Contact Number</label>
+          <input type="tel" name="phone" class="form-input" placeholder="+91 00000 00000" required>
+        </div>
+        <div class="form-group" style="flex:1; min-width:180px;">
+          <label>Email ID</label>
+          <input type="email" name="email" class="form-input" placeholder="hello@example.com" required>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Let's talk</button>
+    </form>
+  </div>
+</div>
+
 <script>
 /* ============ MOBILE HAMBURGER MENU ============ */
 const hamBtn = document.getElementById('hamBtn');
@@ -854,59 +935,11 @@ document.querySelectorAll('.service').forEach(card=>{
   });
   card.addEventListener('mouseleave',()=>card.style.transform='');
 });
-
-/* ============ HERO PARALLAX ============ */
-const hero=document.querySelector('.hero');
-hero.addEventListener('mousemove',e=>{
-  const x=(e.clientX/innerWidth-.5)*30,y=(e.clientY/innerHeight-.5)*30;
-  document.querySelectorAll('.cube').forEach((c,i)=>{c.style.translate=`${x*(i+1)*.3}px ${y*(i+1)*.3}px`});
-});
-
-/* ============ WORK VIDEO HOVER & AUTOPLAY ============ */
-const vidIo = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const v = entry.target.querySelector('video');
-    if (!v) return;
-    // On mobile/touch devices, play when intersecting
-    if (window.matchMedia("(hover: none)").matches) {
-      if (entry.isIntersecting) {
-        v.play().catch(()=>{});
-      } else {
-        v.pause();
-        v.currentTime = 0;
-      }
-    }
-  });
-}, { threshold: 0.5 }); // Triggers when 50% of the video is in view
-
-document.querySelectorAll('.work-card').forEach(card=>{
-  vidIo.observe(card); // Attach intersection observer for mobile
-  
-  const v=card.querySelector('video');
-  // Desktop hover interactions
-  card.addEventListener('mouseenter',()=>{
-    if (window.matchMedia("(hover: hover)").matches) v.play().catch(()=>{});
-  });
-  card.addEventListener('mouseleave',()=>{
-    if (window.matchMedia("(hover: hover)").matches) { v.pause(); v.currentTime=0; }
-  });
-});
-// auto-play first one on load if it's on desktop
-window.addEventListener('load',()=>{
-  if (window.matchMedia("(hover: hover)").matches) {
-    const v=document.querySelector('.work-card video');
-    if(v)v.play().catch(()=>{});
-  }
-});
-
-/* ============ FAQ ============ */
-document.querySelectorAll('.faq-item').forEach(it=>{
-  it.querySelector('.faq-q').addEventListener('click',()=>it.classList.toggle('open'));
-});
-
-/* ============ WHATSAPP ============ */
+/* ============ WHATSAPP & MODAL ============ */
 const PHONE='917083620896';
 function waLink(msg){return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg||'Hi Jenvor Studio')}`}
+
+// Standard WhatsApp link handlers
 document.querySelectorAll('.wa-link').forEach(el=>{
   if (el.tagName.toLowerCase() === 'a') {
     el.setAttribute('href',waLink(el.dataset.msg));
@@ -915,6 +948,54 @@ document.querySelectorAll('.wa-link').forEach(el=>{
   } else {
     el.addEventListener('click', () => window.open(waLink(el.dataset.msg), '_blank', 'noopener'));
   }
+});
+
+// Modal Logic
+const modalOverlay = document.getElementById('modalOverlay');
+const modalCloseBtn = document.getElementById('modalClose');
+const projectForm = document.getElementById('projectForm');
+
+function closeModal() {
+  modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.open-modal').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Close mobile menu if it's open when opening the modal
+    if(hamBtn.classList.contains('open')) {
+      hamBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+    }
+  });
+});
+
+modalCloseBtn.addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) closeModal();
+});
+
+// Form submission -> Convert to WhatsApp message
+projectForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const fd = new FormData(projectForm);
+  
+  const msg = `*New Project Inquiry* 🚀\n
+*Name:* ${fd.get('name')}
+*Brand:* ${fd.get('brand')}
+*Service Needed:* ${fd.get('service')}
+*Budget:* ${fd.get('budget')}
+*Phone:* ${fd.get('phone')}
+*Email:* ${fd.get('email')}
+\n*Project Details:*\n${fd.get('details')}`;
+
+  window.open(waLink(msg), '_blank', 'noopener');
+  closeModal();
+  projectForm.reset();
 });
 
 /* ============ CALCULATOR ============ */
