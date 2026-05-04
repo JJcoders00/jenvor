@@ -100,6 +100,7 @@ button{font-family:inherit;cursor:pointer}
 .eyebrow .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--gold-glow)}50%{box-shadow:0 0 0 10px transparent}}
 
+/* Modified h1 clamp to fit smaller screens better */
 .hero h1{font-family:var(--font-display);font-size:clamp(48px,9vw,148px);font-weight:700;line-height:.95;letter-spacing:-.03em;margin-bottom:30px}
 .hero h1 .word{display:inline-block;animation:wordIn 1s cubic-bezier(.2,.8,.2,1) both}
 .hero h1 .word:nth-child(1){animation-delay:.2s}
@@ -384,8 +385,10 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
   <div class="hero-content">
     <div class="eyebrow">✦ AI Production House · Est. 2026</div>
     <h1>
-      <span class="word">Your Competitors</span> <span class="word">Are Already</span><br>
-      <span class="word shimmer">Spending Less.</span> <span class="word">Looking Better.</span>
+      <span class="word">We</span>
+      <span class="word">Engineer</span><br>
+      <span class="word shimmer">Cinematic</span>
+      <span class="word">Brands.</span>
     </h1>
     <p class="hero-sub">JENVOR STUDIO helps brands reduce their marketing budget by 60–90% — while producing cinematic ads, reels &amp; product visuals that drive real views, engagement &amp; sales.</p>
     <div class="hero-ctas">
@@ -935,6 +938,56 @@ document.querySelectorAll('.service').forEach(card=>{
   });
   card.addEventListener('mouseleave',()=>card.style.transform='');
 });
+
+/* ============ HERO PARALLAX ============ */
+const hero=document.querySelector('.hero');
+hero.addEventListener('mousemove',e=>{
+  const x=(e.clientX/innerWidth-.5)*30,y=(e.clientY/innerHeight-.5)*30;
+  document.querySelectorAll('.cube').forEach((c,i)=>{c.style.translate=`${x*(i+1)*.3}px ${y*(i+1)*.3}px`});
+});
+
+/* ============ WORK VIDEO HOVER & AUTOPLAY ============ */
+const vidIo = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const v = entry.target.querySelector('video');
+    if (!v) return;
+    // On mobile/touch devices, play when intersecting
+    if (window.matchMedia("(hover: none)").matches) {
+      if (entry.isIntersecting) {
+        v.play().catch(()=>{});
+      } else {
+        v.pause();
+        v.currentTime = 0;
+      }
+    }
+  });
+}, { threshold: 0.5 }); // Triggers when 50% of the video is in view
+
+document.querySelectorAll('.work-card').forEach(card=>{
+  vidIo.observe(card); // Attach intersection observer for mobile
+  
+  const v=card.querySelector('video');
+  // Desktop hover interactions
+  card.addEventListener('mouseenter',()=>{
+    if (window.matchMedia("(hover: hover)").matches) v.play().catch(()=>{});
+  });
+  card.addEventListener('mouseleave',()=>{
+    if (window.matchMedia("(hover: hover)").matches) { v.pause(); v.currentTime=0; }
+  });
+});
+// auto-play first one on load if it's on desktop
+window.addEventListener('load',()=>{
+  if (window.matchMedia("(hover: hover)").matches) {
+    const v=document.querySelector('.work-card video');
+    if(v)v.play().catch(()=>{});
+  }
+});
+
+/* ============ FAQ ============ */
+document.querySelectorAll('.faq-item').forEach(it=>{
+  it.querySelector('.faq-q').addEventListener('click',()=>it.classList.toggle('open'));
+});
+
 /* ============ WHATSAPP & MODAL ============ */
 const PHONE='917083620896';
 function waLink(msg){return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg||'Hi Jenvor Studio')}`}
