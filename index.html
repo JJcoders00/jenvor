@@ -479,7 +479,7 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
   <div class="work-grid">
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <video src="royala.mp4" muted loop playsinline preload="metadata" poster=""></video>
+      <video src="royala.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Campaign</div>
         <div class="work-title">Royala Jewellers Opening</div>
@@ -488,7 +488,7 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     </div>
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <video src="belif-cream.mp4" muted loop playsinline preload="metadata" poster=""></video>
+      <video src="belif-cream.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Beauty · Product Film</div>
         <div class="work-title">Belif Sunscreen</div>
@@ -497,7 +497,7 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     </div>
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <video src="bangle.mp4" muted loop playsinline preload="metadata" poster=""></video>
+      <video src="bangle.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Macro Detail</div>
         <div class="work-title">Gold Bangle Collection</div>
@@ -569,60 +569,46 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
 <section id="pricing">
   <div class="sec-head reveal">
     <div>
-      <div class="sec-tag">05 — Investment</div>
-      <h2 class="sec-title">Plans that <em>scale</em> with your brand.</h2>
+      <div class="sec-tag">05 — Our Services &amp; Pricing</div>
+      <h2 class="sec-title">Premium content, <em>fraction of the cost.</em></h2>
     </div>
-    <p class="sec-desc">Transparent packages. No hidden fees. Custom retainers available for ongoing partners.</p>
+    <p class="sec-desc">We help brands create high-quality AI-powered content without the need for expensive traditional shoots, helping reduce production costs by approximately 60–90% while maintaining a premium brand look.</p>
   </div>
-  <div class="pricing">
+  <div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));">
+    
     <div class="plan reveal">
-      <div class="plan-name">Spark</div>
-      <div class="plan-tagline">For Solo Brands</div>
-      <div class="plan-price"><span class="amount">₹14,999</span></div>
-      <div class="plan-note">Starter package · Delivered in 5 days</div>
-      <ul>
-        <li>3 AI-generated ad creatives</li>
-        <li>1 short reel (15s)</li>
-        <li>10 product images</li>
-        <li>1 round of revisions</li>
-        <li>Multi-format export</li>
-      </ul>
-      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in the SPARK plan (₹14,999). Please share details on getting started.">Choose Spark →</button>
+      <div class="plan-name">AI Photoshoots</div>
+      <div class="plan-tagline">High-Quality Visuals</div>
+      <div class="plan-price"><span class="amount">₹200</span><span class="per">/ image</span></div>
+      <div class="plan-note">Premium product photography</div>
+      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in AI Photoshoot Creatives (₹200/image).">Order Images →</button>
+    </div>
+
+    <div class="plan reveal">
+      <div class="plan-name">AI Ad Creatives</div>
+      <div class="plan-tagline">Performance Ads</div>
+      <div class="plan-price"><span class="amount">₹399</span><span class="per">/ creative</span></div>
+      <div class="plan-note">Conversion-driven static ads</div>
+      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in AI Ad Creatives (₹399/creative).">Order Ads →</button>
     </div>
 
     <div class="plan featured reveal">
       <span class="featured-tag">★ Popular</span>
-      <div class="plan-name">Signature</div>
-      <div class="plan-tagline">For Growing Brands</div>
-      <div class="plan-price"><span class="amount">₹39,999</span></div>
-      <div class="plan-note">Most chosen · Delivered in 10 days</div>
-      <ul>
-        <li>1 cinematic brand film (30-45s)</li>
-        <li>8 ad variations for paid media</li>
-        <li>30 product/lifestyle images</li>
-        <li>Motion logo + brand kit</li>
-        <li>3 rounds of revisions</li>
-        <li>Dedicated creative director</li>
-      </ul>
-      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'd like to go with the SIGNATURE plan (₹39,999). Let's discuss next steps.">Choose Signature →</button>
+      <div class="plan-name">Reels &amp; Shorts</div>
+      <div class="plan-tagline">Short-form Content</div>
+      <div class="plan-price"><span class="amount">₹1,499</span><span class="per">/ reel</span></div>
+      <div class="plan-note">15–30 seconds per video</div>
+      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in Short-form Reels (₹1,499/video).">Order Reels →</button>
     </div>
 
     <div class="plan reveal">
-      <div class="plan-name">Atelier</div>
-      <div class="plan-tagline">For Premium Brands</div>
-      <div class="plan-price"><span class="amount">₹99,999</span></div>
-      <div class="plan-note">Full campaign · Delivered in 21 days</div>
-      <ul>
-        <li>Hero brand film (60-90s)</li>
-        <li>20+ performance ads (A/B ready)</li>
-        <li>Full product photo library</li>
-        <li>AI model lookbook</li>
-        <li>Unlimited revisions</li>
-        <li>Monthly retainer option</li>
-        <li>Priority delivery</li>
-      </ul>
-      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in the ATELIER plan (₹99,999). Please share full scope &amp; timeline.">Choose Atelier →</button>
+      <div class="plan-name">Brand Films</div>
+      <div class="plan-tagline">Cinematic Production</div>
+      <div class="plan-price"><span class="amount">₹1,000</span><span class="per">/ 10 sec</span></div>
+      <div class="plan-note">Premium narrative-driven videos</div>
+      <button class="plan-cta wa-link" data-msg="Hi Jenvor Studio, I'm interested in a Cinematic AI Brand Film.">Order Film →</button>
     </div>
+
   </div>
 </section>
 
@@ -633,46 +619,41 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
       <div class="sec-tag">06 — Build Your Quote</div>
       <h2 class="sec-title">Design <em>your own</em> package.</h2>
     </div>
-    <p class="sec-desc">Pick the deliverables you actually need. We'll build a custom estimate in real-time — no calls required.</p>
+    <p class="sec-desc">Pick the exact deliverables you need. We'll build a custom estimate in real-time based on our transparent unit pricing.</p>
   </div>
 
   <div class="calc-wrap reveal">
     <div class="calc-grid">
       <div>
         <div class="calc-field">
-          <label>Project type</label>
-          <div class="chip-row" data-group="type">
-            <button class="chip active" data-val="Ad Campaign" data-price="0">Ad Campaign</button>
-            <button class="chip" data-val="Brand Film" data-price="15000">Brand Film</button>
-            <button class="chip" data-val="Product Shoot" data-price="8000">Product Shoot</button>
-            <button class="chip" data-val="Full Identity" data-price="25000">Full Identity</button>
-          </div>
-        </div>
-
-        <div class="calc-field">
-          <label>Industry</label>
-          <div class="chip-row" data-group="industry">
-            <button class="chip active" data-val="Jewellery" data-price="5000">Jewellery</button>
-            <button class="chip" data-val="Fashion" data-price="3000">Fashion</button>
-            <button class="chip" data-val="F&B" data-price="2000">F&amp;B</button>
-            <button class="chip" data-val="Real Estate" data-price="6000">Real Estate</button>
-            <button class="chip" data-val="Other" data-price="3000">Other</button>
-          </div>
-        </div>
-
-        <div class="calc-field">
-          <label>Number of videos: <b id="vidLabel" style="color:var(--gold-2)">3</b></label>
+          <label>AI Photoshoot Images (₹200/img): <b id="imgLabel" style="color:var(--gold-2)">0</b></label>
           <div class="slider-row">
-            <input type="range" id="vidRange" min="0" max="20" value="3"/>
-            <span class="slider-val" id="vidVal">3</span>
+            <input type="range" id="imgRange" min="0" max="100" value="0"/>
+            <span class="slider-val" id="imgVal">0</span>
           </div>
         </div>
 
         <div class="calc-field">
-          <label>Number of images: <b id="imgLabel" style="color:var(--gold-2)">15</b></label>
+          <label>AI Ad Creatives (₹399/ad): <b id="adLabel" style="color:var(--gold-2)">0</b></label>
           <div class="slider-row">
-            <input type="range" id="imgRange" min="0" max="100" value="15"/>
-            <span class="slider-val" id="imgVal">15</span>
+            <input type="range" id="adRange" min="0" max="50" value="0"/>
+            <span class="slider-val" id="adVal">0</span>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label>Content Reels [15-30s] (₹1,499/reel): <b id="reelLabel" style="color:var(--gold-2)">0</b></label>
+          <div class="slider-row">
+            <input type="range" id="reelRange" min="0" max="30" value="0"/>
+            <span class="slider-val" id="reelVal">0</span>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label>Cinematic Brand Film [Seconds] (₹1,000/10s): <b id="filmLabel" style="color:var(--gold-2)">0s</b></label>
+          <div class="slider-row">
+            <input type="range" id="filmRange" min="0" max="180" step="10" value="0"/>
+            <span class="slider-val" id="filmVal">0</span>
           </div>
         </div>
 
@@ -683,7 +664,6 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
             <button class="chip" data-val="Voiceover" data-price="3000">Voiceover</button>
             <button class="chip" data-val="Music Licensing" data-price="2500">Music</button>
             <button class="chip" data-val="Rush 48h" data-price="12000">Rush 48h</button>
-            <button class="chip" data-val="Strategy Deck" data-price="5000">Strategy Deck</button>
           </div>
         </div>
 
@@ -946,43 +926,6 @@ hero.addEventListener('mousemove',e=>{
   document.querySelectorAll('.cube').forEach((c,i)=>{c.style.translate=`${x*(i+1)*.3}px ${y*(i+1)*.3}px`});
 });
 
-/* ============ WORK VIDEO HOVER & AUTOPLAY ============ */
-const vidIo = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const v = entry.target.querySelector('video');
-    if (!v) return;
-    // On mobile/touch devices, play when intersecting
-    if (window.matchMedia("(hover: none)").matches) {
-      if (entry.isIntersecting) {
-        v.play().catch(()=>{});
-      } else {
-        v.pause();
-        v.currentTime = 0;
-      }
-    }
-  });
-}, { threshold: 0.5 }); // Triggers when 50% of the video is in view
-
-document.querySelectorAll('.work-card').forEach(card=>{
-  vidIo.observe(card); // Attach intersection observer for mobile
-  
-  const v=card.querySelector('video');
-  // Desktop hover interactions
-  card.addEventListener('mouseenter',()=>{
-    if (window.matchMedia("(hover: hover)").matches) v.play().catch(()=>{});
-  });
-  card.addEventListener('mouseleave',()=>{
-    if (window.matchMedia("(hover: hover)").matches) { v.pause(); v.currentTime=0; }
-  });
-});
-// auto-play first one on load if it's on desktop
-window.addEventListener('load',()=>{
-  if (window.matchMedia("(hover: hover)").matches) {
-    const v=document.querySelector('.work-card video');
-    if(v)v.play().catch(()=>{});
-  }
-});
-
 /* ============ FAQ ============ */
 document.querySelectorAll('.faq-item').forEach(it=>{
   it.querySelector('.faq-q').addEventListener('click',()=>it.classList.toggle('open'));
@@ -1053,14 +996,14 @@ projectForm.addEventListener('submit', (e) => {
 
 /* ============ CALCULATOR ============ */
 const state={
-  type:{val:'Ad Campaign',price:0,base:18000},
-  industry:{val:'Jewellery',price:5000},
-  videos:3,
-  images:15,
+  images:0,
+  ads:0,
+  reels:0,
+  film:0,
   addons:[],
   speed:{val:'Standard (10d)',price:0}
 };
-const VIDEO_RATE=4000,IMG_RATE=600;
+const RATES = { img:200, ad:399, reel:1499, film:100 }; // film is 100 per sec (1000 per 10s)
 
 document.querySelectorAll('[data-group]').forEach(group=>{
   const g=group.dataset.group,multi=group.dataset.multi;
@@ -1072,29 +1015,32 @@ document.querySelectorAll('[data-group]').forEach(group=>{
       }else{
         group.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
         c.classList.add('active');
-        state[g]={val:c.dataset.val,price:+c.dataset.price,base:state[g].base};
+        state[g]={val:c.dataset.val,price:+c.dataset.price};
       }
       update();
     });
   });
 });
-const vR=document.getElementById('vidRange'),iR=document.getElementById('imgRange');
-vR.addEventListener('input',()=>{state.videos=+vR.value;document.getElementById('vidVal').textContent=vR.value;document.getElementById('vidLabel').textContent=vR.value;update()});
+
+const iR=document.getElementById('imgRange'), aR=document.getElementById('adRange'), rR=document.getElementById('reelRange'), fR=document.getElementById('filmRange');
+
 iR.addEventListener('input',()=>{state.images=+iR.value;document.getElementById('imgVal').textContent=iR.value;document.getElementById('imgLabel').textContent=iR.value;update()});
+aR.addEventListener('input',()=>{state.ads=+aR.value;document.getElementById('adVal').textContent=aR.value;document.getElementById('adLabel').textContent=aR.value;update()});
+rR.addEventListener('input',()=>{state.reels=+rR.value;document.getElementById('reelVal').textContent=rR.value;document.getElementById('reelLabel').textContent=rR.value;update()});
+fR.addEventListener('input',()=>{state.film=+fR.value;document.getElementById('filmVal').textContent=fR.value;document.getElementById('filmLabel').textContent=fR.value+'s';update()});
 
 function update(){
-  const total = state.type.base + state.type.price + state.industry.price
-              + state.videos*VIDEO_RATE + state.images*IMG_RATE
+  const total = (state.images*RATES.img) + (state.ads*RATES.ad) + (state.reels*RATES.reel) + (state.film*RATES.film)
               + state.addons.reduce((s,a)=>s+a.price,0) + state.speed.price;
   document.getElementById('totalPrice').textContent=total.toLocaleString('en-IN');
-  const items=[
-    ['Project',state.type.val],
-    ['Industry',state.industry.val],
-    ['Videos',state.videos],
-    ['Images',state.images],
-    ['Add-ons',state.addons.length?state.addons.map(a=>a.val).join(', '):'None'],
-    ['Speed',state.speed.val]
-  ];
+  const items=[];
+  if(state.images>0) items.push(['Images',state.images]);
+  if(state.ads>0) items.push(['Ad Creatives',state.ads]);
+  if(state.reels>0) items.push(['Reels',state.reels]);
+  if(state.film>0) items.push(['Brand Film',state.film+' sec']);
+  if(state.addons.length) items.push(['Add-ons',state.addons.map(a=>a.val).join(', ')]);
+  items.push(['Speed',state.speed.val]);
+  
   document.getElementById('summaryList').innerHTML=items.map(([k,v])=>`<li><span>${k}</span><b>${v}</b></li>`).join('');
 }
 update();
@@ -1102,10 +1048,10 @@ update();
 document.getElementById('calcCta').addEventListener('click',()=>{
   const total=document.getElementById('totalPrice').textContent;
   const msg=`Hi Jenvor Studio! I built a custom quote on your site:
-• Project: ${state.type.val}
-• Industry: ${state.industry.val}
-• Videos: ${state.videos}
 • Images: ${state.images}
+• Ad Creatives: ${state.ads}
+• Reels (15-30s): ${state.reels}
+• Brand Film: ${state.film} sec
 • Add-ons: ${state.addons.length?state.addons.map(a=>a.val).join(', '):'None'}
 • Speed: ${state.speed.val}
 • Estimated total: ₹${total}
