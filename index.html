@@ -209,17 +209,70 @@ section{position:relative;z-index:2;padding:140px 6vw}
 .s-tags span{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 11px;border:1px solid rgba(212,175,55,.25);border-radius:50px;color:var(--gold-2)}
 
 /* ============ WORK / VIDEOS ============ */
-.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%, 340px),1fr));gap:30px}
-.work-card{position:relative;border-radius:28px;overflow:hidden;border:1px solid rgba(212,175,55,.18);background:#000;aspect-ratio:9/14;transition:transform .6s cubic-bezier(.2,.8,.2,1);cursor:pointer}
-.work-card:hover{transform:translateY(-10px) scale(1.02)}
-.work-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s,filter .5s;filter:saturate(1.1)}
-.work-card:hover video{transform:scale(1.06)}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+.work-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: #000;
+  height: 500px;
+  grid-column: span 4;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s;
+  cursor: pointer;
+}
+.work-card.landscape {
+  grid-column: span 8;
+}
+.work-card.centered-last {
+  grid-column: 4 / span 6;
+}
+.work-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-gold);
+  z-index: 10;
+}
+.work-card video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s, filter 0.5s;
+  filter: saturate(1.1);
+}
+.work-card:hover video {
+  transform: scale(1.05);
+}
+
+@media(max-width: 1080px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .work-card { grid-column: span 1; height: 460px; }
+  .work-card.landscape { grid-column: span 2; height: 460px; }
+  .work-card.centered-last { grid-column: span 2; height: 460px; }
+}
+@media(max-width: 740px) {
+  .work-grid { grid-template-columns: 1fr; gap: 20px; }
+  .work-card { grid-column: span 1 !important; height: 480px; }
+  .work-card.landscape { height: 260px; }
+}
+
 .work-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85));z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
 .work-cat{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold-2);margin-bottom:8px}
 .work-title{font-family:var(--font-display);font-size:28px;font-weight:700;line-height:1.1}
 .work-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-dim);margin-top:16px;padding-top:16px;border-top:1px solid rgba(245,241,232,.15)}
 .play-pill{position:absolute;top:24px;right:24px;z-index:3;display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(0,0,0,.5);backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,.4);border-radius:50px;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1.5px}
 .play-pill .pulse{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 1.5s infinite}
+
+/* Mute button for mobile devices */
+.mute-btn{position:absolute;top:24px;left:24px;z-index:4;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.5);backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,.4);display:none;align-items:center;justify-content:center;color:var(--gold);transition:all .3s;cursor:pointer;padding:0;}
+.mute-btn:active{background:rgba(212,175,55,.2);transform:scale(0.95);}
+.mute-btn svg{width:18px;height:18px;}
+@media(hover: none){.mute-btn{display:flex;}}
 
 /* ============ PROCESS ============ */
 .process{position:relative}
@@ -479,6 +532,9 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
   <div class="work-grid">
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
       <video src="royala.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Campaign</div>
@@ -488,6 +544,9 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     </div>
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
       <video src="belif-cream.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Beauty · Product Film</div>
@@ -497,11 +556,50 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
     </div>
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
       <video src="bangle.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Macro Detail</div>
         <div class="work-title">Gold Bangle Collection</div>
         <div class="work-meta"><span>2026</span><span>15K+ views</span></div>
+      </div>
+    </div>
+    <div class="work-card reveal">
+      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
+      <video src="Praveshgoldsample.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <div class="work-overlay">
+        <div class="work-cat">Jewellery · Campaign</div>
+        <div class="work-title">Pravesh Gold Collection</div>
+        <div class="work-meta"><span>2026</span><span>32K+ views</span></div>
+      </div>
+    </div>
+    <div class="work-card landscape reveal">
+      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
+      <video src="zyroshoe.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <div class="work-overlay">
+        <div class="work-cat">Fashion · Product Film</div>
+        <div class="work-title">Zyro Footwear</div>
+        <div class="work-meta"><span>2026</span><span>18K+ views</span></div>
+      </div>
+    </div>
+    <div class="work-card centered-last reveal">
+      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
+      <button class="mute-btn" aria-label="Toggle Audio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      </button>
+      <video src="Railwayheritagedemo.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <div class="work-overlay">
+        <div class="work-cat">Real Estate · Cinematic</div>
+        <div class="work-title">Railway Heritage</div>
+        <div class="work-meta"><span>2026</span><span>21K+ views</span></div>
       </div>
     </div>
   </div>
@@ -660,10 +758,9 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
         <div class="calc-field">
           <label>Add-ons</label>
           <div class="chip-row" data-group="addons" data-multi="1">
-            <button class="chip" data-val="AI Models" data-price="8000">AI Models</button>
-            <button class="chip" data-val="Voiceover" data-price="3000">Voiceover</button>
-            <button class="chip" data-val="Music Licensing" data-price="2500">Music</button>
-            <button class="chip" data-val="Rush 48h" data-price="12000">Rush 48h</button>
+            <button class="chip" data-val="Captain" data-price="50">Captain</button>
+            <button class="chip" data-val="Voiceover" data-price="199">Voiceover</button>
+            <button class="chip" data-val="Music Licensing" data-price="0">Music (Free)</button>
           </div>
         </div>
 
@@ -671,8 +768,8 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
           <label>Delivery speed</label>
           <div class="chip-row" data-group="speed">
             <button class="chip active" data-val="Standard (10d)" data-price="0">Standard · 10 days</button>
-            <button class="chip" data-val="Fast (5d)" data-price="6000">Fast · 5 days</button>
-            <button class="chip" data-val="Express (48h)" data-price="15000">Express · 48h</button>
+            <button class="chip" data-val="Fast (5d)" data-price="50">Fast · 5 days</button>
+            <button class="chip" data-val="Express (48h)" data-price="150">Express · 48h</button>
           </div>
         </div>
       </div>
@@ -924,6 +1021,52 @@ const hero=document.querySelector('.hero');
 hero.addEventListener('mousemove',e=>{
   const x=(e.clientX/innerWidth-.5)*30,y=(e.clientY/innerHeight-.5)*30;
   document.querySelectorAll('.cube').forEach((c,i)=>{c.style.translate=`${x*(i+1)*.3}px ${y*(i+1)*.3}px`});
+});
+
+/* ============ WORK VIDEO HOVER & AUTOPLAY ============ */
+const vidIo = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const v = entry.target.querySelector('video');
+    if (!v) return;
+    // Pause videos when scrolled out of view to save battery/bandwidth
+    if (entry.isIntersecting) {
+      v.play().catch(()=>{});
+    } else {
+      v.pause();
+    }
+  });
+}, { threshold: 0.1 }); 
+
+document.querySelectorAll('.work-card').forEach(card=>{
+  vidIo.observe(card); 
+  
+  const v=card.querySelector('video');
+  const muteBtn=card.querySelector('.mute-btn');
+  
+  // Desktop hover interactions (Unmute only)
+  card.addEventListener('mouseenter',()=>{
+    if (window.matchMedia("(hover: hover)").matches) { v.muted = false; }
+  });
+  card.addEventListener('mouseleave',()=>{
+    if (window.matchMedia("(hover: hover)").matches) { v.muted = true; }
+  });
+
+  // Mobile mute button interaction
+  if (muteBtn) {
+    muteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      v.muted = !v.muted;
+      
+      if (v.muted) {
+        // Speaker with X icon
+        muteBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+      } else {
+        // Speaker with sound waves icon
+        muteBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
+      }
+    });
+  }
 });
 
 /* ============ FAQ ============ */
