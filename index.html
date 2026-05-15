@@ -94,13 +94,12 @@ button{font-family:inherit;cursor:pointer}
 }
 
 /* ============ HERO ============ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 6vw 80px;z-index:2;perspective:1500px;overflow:hidden;} /* Added overflow:hidden to stop cubes from pushing mobile width */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:140px 6vw 80px;z-index:2;perspective:1500px;overflow:hidden;}
 .hero-content{text-align:center;max-width:1100px;position:relative;z-index:3}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border:1px solid rgba(212,175,55,.4);border-radius:50px;font-family:var(--font-mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-2);margin-bottom:30px;background:rgba(212,175,55,.05);animation:fadeUp 1s .1s both}
 .eyebrow .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--gold-glow)}50%{box-shadow:0 0 0 10px transparent}}
 
-/* Modified h1 clamp to fit smaller screens better */
 .hero h1{font-family:var(--font-display);font-size:clamp(48px,9vw,148px);font-weight:700;line-height:.95;letter-spacing:-.03em;margin-bottom:30px}
 .hero h1 .word{display:inline-block;animation:wordIn 1s cubic-bezier(.2,.8,.2,1) both}
 .hero h1 .word:nth-child(1){animation-delay:.2s}
@@ -221,22 +220,16 @@ section{position:relative;z-index:2;padding:140px 6vw}
   border: 1px solid rgba(212, 175, 55, 0.18);
   background: #000;
   height: 500px;
-  grid-column: span 4;
+  grid-column: span 6; /* Fixed 2-column layout for 4 items */
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s;
   cursor: pointer;
-}
-.work-card.landscape {
-  grid-column: span 8;
-}
-.work-card.centered-last {
-  grid-column: 4 / span 6;
 }
 .work-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: var(--shadow-gold);
   z-index: 10;
 }
-.work-card video {
+.work-card video, .work-card iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -250,18 +243,14 @@ section{position:relative;z-index:2;padding:140px 6vw}
 }
 
 @media(max-width: 1080px) {
-  .work-grid { grid-template-columns: repeat(2, 1fr); }
-  .work-card { grid-column: span 1; height: 460px; }
-  .work-card.landscape { grid-column: span 2; height: 460px; }
-  .work-card.centered-last { grid-column: span 2; height: 460px; }
+  .work-card { height: 460px; }
 }
 @media(max-width: 740px) {
   .work-grid { grid-template-columns: 1fr; gap: 20px; }
   .work-card { grid-column: span 1 !important; height: 480px; }
-  .work-card.landscape { height: 260px; }
 }
 
-.work-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85));z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.85));z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;pointer-events:none;}
 .work-cat{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--gold-2);margin-bottom:8px}
 .work-title{font-family:var(--font-display);font-size:28px;font-weight:700;line-height:1.1}
 .work-meta{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--ink-dim);margin-top:16px;padding-top:16px;border-top:1px solid rgba(245,241,232,.15)}
@@ -526,76 +515,52 @@ footer{padding:80px 6vw 120px;border-top:1px solid rgba(212,175,55,.1);position:
       <div class="sec-tag">02 — Selected Work</div>
       <h2 class="sec-title">Films that <em>moved millions.</em></h2>
     </div>
-    <p class="sec-desc">A peek into what our AI-augmented workflow looks like in production. Hover to play.</p>
+    <p class="sec-desc">A peek into what our AI-augmented workflow looks like in production.</p>
   </div>
 
   <div class="work-grid">
+    <!-- Card 1 -->
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
       <button class="mute-btn" aria-label="Toggle Audio">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
       </button>
-      <video src="royala.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <video src="royala.mp4" autoplay muted loop playsinline preload="auto" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Campaign</div>
         <div class="work-title">Royala Jewellers Opening</div>
         <div class="work-meta"><span>2026</span><span>45K+ views</span></div>
       </div>
     </div>
+    <!-- Card 2 -->
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
       <button class="mute-btn" aria-label="Toggle Audio">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
       </button>
-      <video src="belif-cream.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <video src="belif-cream.mp4" autoplay muted loop playsinline preload="auto" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Beauty · Product Film</div>
         <div class="work-title">Belif Sunscreen</div>
         <div class="work-meta"><span>2026</span><span>28K+ views</span></div>
       </div>
     </div>
+    <!-- Card 3 -->
     <div class="work-card reveal">
       <span class="play-pill"><span class="pulse"></span> Now Playing</span>
       <button class="mute-btn" aria-label="Toggle Audio">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
       </button>
-      <video src="bangle.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <video src="bangle.mp4" autoplay muted loop playsinline preload="auto" poster=""></video>
       <div class="work-overlay">
         <div class="work-cat">Jewellery · Macro Detail</div>
         <div class="work-title">Gold Bangle Collection</div>
         <div class="work-meta"><span>2026</span><span>15K+ views</span></div>
       </div>
     </div>
+    <!-- Card 4: ScreenPal Embed -->
     <div class="work-card reveal">
-      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <button class="mute-btn" aria-label="Toggle Audio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-      </button>
-      <video src="Praveshgoldsample.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
-      <div class="work-overlay">
-        <div class="work-cat">Jewellery · Campaign</div>
-        <div class="work-title">Pravesh Gold Collection</div>
-        <div class="work-meta"><span>2026</span><span>32K+ views</span></div>
-      </div>
-    </div>
-    <div class="work-card landscape reveal">
-      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <button class="mute-btn" aria-label="Toggle Audio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-      </button>
-      <video src="zyroshoe.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
-      <div class="work-overlay">
-        <div class="work-cat">Fashion · Product Film</div>
-        <div class="work-title">Zyro Footwear</div>
-        <div class="work-meta"><span>2026</span><span>18K+ views</span></div>
-      </div>
-    </div>
-    <div class="work-card centered-last reveal">
-      <span class="play-pill"><span class="pulse"></span> Now Playing</span>
-      <button class="mute-btn" aria-label="Toggle Audio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-      </button>
-      <video src="Railwayheritagedemo.mp4" autoplay muted loop playsinline preload="metadata" poster=""></video>
+      <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" scrolling="no" src="https://go.screenpal.com/player/cOhobUntv3D?ff=1&ahc=1&dcc=1&tl=1&bg=transparent&share=1&download=1&embed=1&cl=1" allowfullscreen="true"></iframe>
       <div class="work-overlay">
         <div class="work-cat">Real Estate · Cinematic</div>
         <div class="work-title">Railway Heritage</div>
@@ -972,7 +937,6 @@ const navItems = navLinks.querySelectorAll('a');
 hamBtn.addEventListener('click', () => {
   hamBtn.classList.toggle('open');
   navLinks.classList.toggle('open');
-  // Lock body scrolling when menu is active
   document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
 });
 
@@ -980,7 +944,6 @@ navItems.forEach(item => {
   item.addEventListener('click', () => {
     hamBtn.classList.remove('open');
     navLinks.classList.remove('open');
-    // Important: Reset overflow to empty to fix scrolling getting stuck after nav clicks
     document.body.style.overflow = '';
   });
 });
@@ -1028,11 +991,10 @@ const vidIo = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     const v = entry.target.querySelector('video');
     if (!v) return;
-    // Pause videos when scrolled out of view to save battery/bandwidth
     if (entry.isIntersecting) {
-      v.play().catch(()=>{});
+      if (v.paused) v.play().catch(()=>{});
     } else {
-      v.pause();
+      if (!v.paused) v.pause();
     }
   });
 }, { threshold: 0.1 }); 
@@ -1043,29 +1005,23 @@ document.querySelectorAll('.work-card').forEach(card=>{
   const v=card.querySelector('video');
   const muteBtn=card.querySelector('.mute-btn');
   
-  // Desktop hover interactions (Unmute only)
-  card.addEventListener('mouseenter',()=>{
-    if (window.matchMedia("(hover: hover)").matches) { v.muted = false; }
-  });
-  card.addEventListener('mouseleave',()=>{
-    if (window.matchMedia("(hover: hover)").matches) { v.muted = true; }
-  });
-
-  // Mobile mute button interaction
-  if (muteBtn) {
-    muteBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      v.muted = !v.muted;
-      
-      if (v.muted) {
-        // Speaker with X icon
-        muteBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
-      } else {
-        // Speaker with sound waves icon
-        muteBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
-      }
+  if (v) {
+    card.addEventListener('mouseenter',()=>{
+      if (window.matchMedia("(hover: hover)").matches) { v.muted = false; }
     });
+    card.addEventListener('mouseleave',()=>{
+      if (window.matchMedia("(hover: hover)").matches) { v.muted = true; }
+    });
+
+    if (muteBtn) {
+      muteBtn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        v.muted = !v.muted;
+        muteBtn.innerHTML = v.muted ? 
+          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>` : 
+          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
+      });
+    }
   }
 });
 
@@ -1078,7 +1034,6 @@ document.querySelectorAll('.faq-item').forEach(it=>{
 const PHONE='917083620896';
 function waLink(msg){return `https://wa.me/${PHONE}?text=${encodeURIComponent(msg||'Hi Jenvor Studio')}`}
 
-// Standard WhatsApp link handlers
 document.querySelectorAll('.wa-link').forEach(el=>{
   if (el.tagName.toLowerCase() === 'a') {
     el.setAttribute('href',waLink(el.dataset.msg));
@@ -1089,7 +1044,6 @@ document.querySelectorAll('.wa-link').forEach(el=>{
   }
 });
 
-// Modal Logic
 const modalOverlay = document.getElementById('modalOverlay');
 const modalCloseBtn = document.getElementById('modalClose');
 const projectForm = document.getElementById('projectForm');
@@ -1104,8 +1058,6 @@ document.querySelectorAll('.open-modal').forEach(btn => {
     e.preventDefault();
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
-    // Close mobile menu if it's open when opening the modal
     if(hamBtn.classList.contains('open')) {
       hamBtn.classList.remove('open');
       navLinks.classList.remove('open');
@@ -1118,35 +1070,18 @@ modalOverlay.addEventListener('click', (e) => {
   if (e.target === modalOverlay) closeModal();
 });
 
-// Form submission -> Convert to WhatsApp message
 projectForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const fd = new FormData(projectForm);
-  
-  const msg = `*New Project Inquiry* 🚀\n
-*Name:* ${fd.get('name')}
-*Brand:* ${fd.get('brand')}
-*Service Needed:* ${fd.get('service')}
-*Budget:* ${fd.get('budget')}
-*Phone:* ${fd.get('phone')}
-*Email:* ${fd.get('email')}
-\n*Project Details:*\n${fd.get('details')}`;
-
+  const msg = `*New Project Inquiry* 🚀\n\n*Name:* ${fd.get('name')}\n*Brand:* ${fd.get('brand')}\n*Service Needed:* ${fd.get('service')}\n*Budget:* ${fd.get('budget')}\n*Phone:* ${fd.get('phone')}\n*Email:* ${fd.get('email')}\n\n*Project Details:*\n${fd.get('details')}`;
   window.open(waLink(msg), '_blank', 'noopener');
   closeModal();
   projectForm.reset();
 });
 
 /* ============ CALCULATOR ============ */
-const state={
-  images:0,
-  ads:0,
-  reels:0,
-  film:0,
-  addons:[],
-  speed:{val:'Standard (10d)',price:0}
-};
-const RATES = { img:200, ad:399, reel:1499, film:100 }; // film is 100 per sec (1000 per 10s)
+const state={ images:0, ads:0, reels:0, film:0, addons:[], speed:{val:'Standard (10d)',price:0} };
+const RATES = { img:200, ad:399, reel:1499, film:100 };
 
 document.querySelectorAll('[data-group]').forEach(group=>{
   const g=group.dataset.group,multi=group.dataset.multi;
@@ -1166,15 +1101,13 @@ document.querySelectorAll('[data-group]').forEach(group=>{
 });
 
 const iR=document.getElementById('imgRange'), aR=document.getElementById('adRange'), rR=document.getElementById('reelRange'), fR=document.getElementById('filmRange');
-
 iR.addEventListener('input',()=>{state.images=+iR.value;document.getElementById('imgVal').textContent=iR.value;document.getElementById('imgLabel').textContent=iR.value;update()});
 aR.addEventListener('input',()=>{state.ads=+aR.value;document.getElementById('adVal').textContent=aR.value;document.getElementById('adLabel').textContent=aR.value;update()});
 rR.addEventListener('input',()=>{state.reels=+rR.value;document.getElementById('reelVal').textContent=rR.value;document.getElementById('reelLabel').textContent=rR.value;update()});
 fR.addEventListener('input',()=>{state.film=+fR.value;document.getElementById('filmVal').textContent=fR.value;document.getElementById('filmLabel').textContent=fR.value+'s';update()});
 
 function update(){
-  const total = (state.images*RATES.img) + (state.ads*RATES.ad) + (state.reels*RATES.reel) + (state.film*RATES.film)
-              + state.addons.reduce((s,a)=>s+a.price,0) + state.speed.price;
+  const total = (state.images*RATES.img) + (state.ads*RATES.ad) + (state.reels*RATES.reel) + (state.film*RATES.film) + state.addons.reduce((s,a)=>s+a.price,0) + state.speed.price;
   document.getElementById('totalPrice').textContent=total.toLocaleString('en-IN');
   const items=[];
   if(state.images>0) items.push(['Images',state.images]);
@@ -1183,23 +1116,13 @@ function update(){
   if(state.film>0) items.push(['Brand Film',state.film+' sec']);
   if(state.addons.length) items.push(['Add-ons',state.addons.map(a=>a.val).join(', ')]);
   items.push(['Speed',state.speed.val]);
-  
   document.getElementById('summaryList').innerHTML=items.map(([k,v])=>`<li><span>${k}</span><b>${v}</b></li>`).join('');
 }
 update();
 
 document.getElementById('calcCta').addEventListener('click',()=>{
   const total=document.getElementById('totalPrice').textContent;
-  const msg=`Hi Jenvor Studio! I built a custom quote on your site:
-• Images: ${state.images}
-• Ad Creatives: ${state.ads}
-• Reels (15-30s): ${state.reels}
-• Brand Film: ${state.film} sec
-• Add-ons: ${state.addons.length?state.addons.map(a=>a.val).join(', '):'None'}
-• Speed: ${state.speed.val}
-• Estimated total: ₹${total}
-
-I'd like to discuss next steps.`;
+  const msg=`Hi Jenvor Studio! I built a custom quote on your site:\n• Images: ${state.images}\n• Ad Creatives: ${state.ads}\n• Reels (15-30s): ${state.reels}\n• Brand Film: ${state.film} sec\n• Add-ons: ${state.addons.length?state.addons.map(a=>a.val).join(', '):'None'}\n• Speed: ${state.speed.val}\n• Estimated total: ₹${total}\n\nI'd like to discuss next steps.`;
   window.open(waLink(msg),'_blank');
 });
 </script>
